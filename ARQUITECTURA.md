@@ -1,8 +1,10 @@
-# ICAP Ingeniería — propuesta y estado de la primera entrega
+# ICAP Ingeniería — arquitectura aprobada y plan de migración
 
 ## Estado actual
 
-El repositorio inicial solo contenía `AGENTS.md`, `LEEME.txt` y las skills. No había aplicación, framework, WordPress ni código que migrar. `index.html` es una **maqueta local de la página de inicio**. Todavía no existe un CMS ni se ha publicado el rediseño.
+La primera entrega añadió `index.html`, `styles.css`, `script.js` y `assets/` al material inicial. Es una **maqueta local de la página de inicio**, construida con HTML, CSS y JavaScript sin framework ni compilación. Todavía no existe WordPress, conexión a base de datos ni publicación del rediseño. La Fase 1 resguardó todos los archivos con Git en la rama `main`; el commit inicial `96264f5` conserva la maqueta anterior a esta actualización documental. No hay remoto configurado.
+
+La arquitectura aprobada es WordPress como CMS, tema personalizado con PHP, CSS actual como base visual, JavaScript para interactividad, `theme.json` para identidad visual, MariaDB/MySQL, XAMPP local y Hostinger como alojamiento final. **Tailwind CSS y Alpine.js no forman parte de esta implementación.** El inventario de campos, imágenes y enlaces está en [`INVENTARIO_CMS.md`](INVENTARIO_CMS.md).
 
 ## Estructura propuesta
 
@@ -27,25 +29,48 @@ El sitio actual usa rutas como `/Nosotros`, `/Mecanico` y `/Control`. Al pasar a
 - Tipografía: Arial/Helvetica como opción local rápida, sin llamadas a terceros. Escala fluida para titulares mediante `clamp()`.
 - Retícula: contenedor máximo de 1220 px, márgenes fluidos y espaciado de secciones adaptable. Tarjetas de servicios sin sombras pesadas; animaciones discretas y desactivadas con movimiento reducido.
 - Fotografía: archivos usados por el sitio oficial. Copias WebP para la maqueta; los JPEG originales se guardan como referencia de origen. No se asignan clientes, cifras o nombres de proyectos que ICAP no haya confirmado.
+- Conservación: reutilizar el HTML semántico, las clases, las variables CSS, el menú móvil de `script.js`, el logo y todas las fotografías. La conversión a WordPress se hará en un directorio nuevo; la maqueta permanecerá intacta como referencia.
 
-## Arquitectura WordPress recomendada
+## Arquitectura WordPress definitiva
 
-**Tema de bloques personalizado en WordPress de Hostinger**, con `theme.json` para colores, tipografía y espaciado; plantillas para Inicio, Nosotros, archivo de Servicios, ficha de Servicio, archivo de Proyectos, ficha de Proyecto y Contacto. La maqueta actual sirve como referencia visual para convertirla en ese tema. No hace falta un frontend desacoplado para estos requisitos.
+Se desarrollará un **tema híbrido de plantillas PHP**. `header.php`, `front-page.php`, `footer.php` y las plantillas interiores conservarán la estructura y las clases visuales de la maqueta. `functions.php` registrará los recursos y funciones del tema; `theme.json` definirá la paleta, tipografía y ajustes del editor en coherencia con las variables CSS. El CSS actual será la base; se reorganizará solo cuando la conversión lo requiera, con comprobación visual antes y después. No se necesita un frontend desacoplado.
 
-| Contenido editable | Modelo recomendado |
+Los textos e imágenes que el cliente cambie se almacenarán en WordPress y se mostrarán mediante PHP, con validación de entrada y escape de salida. Para secciones fijas se diseñarán pantallas/campos de contenido claros; las imágenes se seleccionarán en la biblioteca de medios. Los tipos de contenido `servicio`, `proyecto` y `elemento de galería` vivirán en un pequeño plugin propio para que el contenido sobreviva a un cambio de tema. **Una foto de galería no se convertirá automáticamente en una ficha de proyecto.**
+
+| Área | Modelo editorial aprobado |
 | --- | --- |
-| Inicio: título, introducción, imagen principal y llamada a la acción | Bloques nativos con patrones bloqueados en estructura |
-| Nosotros: historia, misión, visión, política, objetivos, imágenes | Página de bloques con patrones controlados |
-| Servicios: nombre, resumen, detalle, imagen y orden | Tipo de contenido `servicio` con campos/bloques definidos; cuatro términos o entradas iniciales |
-| Galería y proyectos: añadir, quitar o reordenar fotos, leyendas y categorías | Tipo `proyecto`, medios de WordPress, galería de bloques y taxonomía de categoría |
-| Contacto: teléfono, correo, dirección y enlaces autorizados | Opciones globales del tema o patrón sincronizado administrado |
+| Inicio, Nosotros y Contacto | Secciones fijas con campos para títulos, textos, botones e imágenes; PHP controla el marcado y la composición |
+| Servicios | Cuatro fichas precargadas con contenido, imagen y orden editables; nombre de categoría y ruta canónica bajo control del Administrador |
+| Proyectos | Fichas independientes para casos documentados y autorizados por ICAP |
+| Galería | Elementos de imagen independientes con leyenda, alt, orden y estado de publicación; se podrán agregar, reemplazar y retirar |
+| Contacto global | Una sola fuente para correo, teléfono, dirección y enlaces autorizados, reutilizada en portada y pie |
 
-El rol Editor podrá cambiar textos e imágenes sin editar estilos globales ni plantillas. Mantener la administración del tema y plugins en un rol Administrador. Formularios, antispam, SSL, copias de seguridad y SEO básico se definirán en staging con el mínimo de plugins mantenidos. Antes de publicar: comprobar edición de texto, sustitución, alta, orden y eliminación de fotos; revisar móvil y escritorio; validar permisos; probar restauración y redirecciones.
+El rol **Gestor de contenido ICAP** tendrá capacidades específicas para editar estas áreas y subir medios. No tendrá acceso a temas, plugins, ajustes técnicos, usuarios, plantillas, CSS o JavaScript. El Administrador mantendrá el control técnico. La restricción se aplicará con permisos reales de WordPress, no solo ocultando opciones del menú.
 
-## Pendiente antes de producción
+### Organización de código prevista (no creada aún)
 
-1. Confirmar permiso de uso de los archivos del sitio actual y solicitar originales de logo/fotos en mayor calidad, manual de marca y HEX oficial.
-2. Recibir fichas y leyendas reales de proyectos; las imágenes actuales son una galería visual sin atribuciones de proyecto.
-3. Construir el tema WordPress y el resto de páginas; migrar contenido verificado y sustituir los enlaces temporales al sitio anterior.
-4. Validar datos de contacto y añadir formulario con tratamiento de datos aprobado por ICAP.
-5. Probar en staging y publicar solo cuando ICAP autorice el lanzamiento.
+```text
+index.html, styles.css, script.js, assets/   # maqueta conservada
+tema-icap/                                  # fuente del tema PHP
+  style.css, theme.json, functions.php
+  header.php, front-page.php, footer.php
+  page.php, single-servicio.php, single-proyecto.php
+  assets/css/, assets/js/, assets/img/
+plugin-icap-contenido/                      # tipos y permisos del CMS
+wordpress/                                 # instalación local ignorada por Git
+```
+
+Las rutas actuales como `/Nosotros`, `/Mecanico`, `/Manufactura`, `/Electrico` y `/Control` se conservarán cuando sea posible. Si alguna cambia, se preparará una redirección 301. Los enlaces provisionales al sitio anterior se sustituirán solo cuando las páginas nuevas estén listas.
+
+## Fases de implementación
+
+| Fase | Trabajo | Estado |
+| --- | --- | --- |
+| 1. Resguardo y preparación | Git, `.gitignore`, inventario editorial, permisos propuestos y este plan | **Completada; sin instalar WordPress** |
+| 2. Entorno local | Instalar WordPress de forma aislada en XAMPP, configurar MariaDB y comprobar accesos | Pendiente de autorización posterior |
+| 3. Tema e inicio | Crear tema PHP, `theme.json`, trasladar home y conectar contenido editable sin perder diseño | Pendiente |
+| 4. Administración | Crear plugin de contenido, pantallas/campos y rol; probar cambios, altas, reemplazos y retiros de fotos | Pendiente |
+| 5. Páginas interiores | Nosotros, servicios, proyectos/galería y contacto con datos verificados | Pendiente |
+| 6. Validación y lanzamiento | Pruebas de accesibilidad, responsive, rendimiento, SEO, permisos, respaldos y redirecciones en staging; despliegue tras autorización | Pendiente |
+
+La Fase 1 no instala WordPress, no crea bases de datos y no modifica la maqueta. Antes de producción faltará validar permiso y originales del logo/fotos, HEX corporativo, datos de contacto y fichas de proyectos. Un formulario requerirá textos legales, protección antispam y un flujo aprobado por ICAP.
