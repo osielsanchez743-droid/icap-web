@@ -1,0 +1,10 @@
+SKILLS PARA CODEX - ESTADÍAS ICAP
+
+1. Extrae el contenido de este ZIP dentro de tu carpeta abierta "Estadías ICAP".
+2. La raíz de la carpeta debe contener AGENTS.md y .agents/skills/.
+3. Importante: habilita ver archivos ocultos (la carpeta .agents empieza con punto).
+4. Reinicia/recarga VS Code o inicia un chat nuevo en Codex.
+5. Prompt recomendado:
+   Usa las skills icap-diseno-ui, icap-responsive-accesibilidad e icap-wordpress-cms. Revisa primero los archivos actuales de Estadías ICAP. Propón la arquitectura de un sitio empresarial para ICAP (https://icapmx.com/) con estética industrial premium naranja y grafito, totalmente responsive y contenido editable por el cliente con WordPress en Hostinger. Comienza con un plan, estructura y home, sin publicar ni sobrescribir archivos existentes sin aprobación.
+
+NOTA: Tener las skills no crea automáticamente la web ni configura WordPress. Orientan a Codex al trabajar en el proyecto.
