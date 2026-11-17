@@ -13,17 +13,17 @@ Estado: **Fase 1, inventario y propuesta**. La home en `index.html` sigue siendo
 
 | Sección actual | Contenido que el cliente editará | Ubicación actual | Administración prevista |
 | --- | --- | --- | --- |
-| Portada | Antetítulo, título, párrafo, texto de CTA principal y secundario | `index.html:38-43` | Pantalla «Inicio» con campos de texto y enlaces controlados |
-| Franja de presentación | Rótulo y frase de capacidades | `index.html:49-54` | Campos de «Inicio» |
-| Introducción a servicios | Antetítulo, titular y párrafo introductorio | `index.html:57-61` | Campos de «Inicio» |
-| Tarjetas de servicios | Resumen, texto de detalle, imagen y orden de cada una de las cuatro áreas | `index.html:63-76` | Pantalla «Servicios» con cuatro fichas precargadas |
-| Nota provisional de servicios | Texto que explica el enlace al sitio antiguo | `index.html:77` | Se retirará al existir fichas nuevas; no será un campo habitual |
-| Presentación de la empresa | Antetítulo, título, párrafo y texto del enlace a «Nosotros» | `index.html:81-89` | Pantalla «Inicio»; detalle ampliado en «Nosotros» |
-| Introducción a galería | Antetítulo, titular y párrafo | `index.html:92-96` | Campos de «Inicio» |
-| Pies de foto actuales | «Estaciones de trabajo», «Integración industrial», «Equipo de proceso», «Detalle de estación» | `index.html:99-102` | Cada elemento de galería tendrá leyenda y texto alternativo editables |
-| Llamada a contacto | Antetítulo, titular, párrafo y texto de botón | `index.html:107-110` | Campos de «Inicio»; destino alimentado por contacto global |
-| Pie de página | Descripción de ICAP, correo, teléfono y dirección | `index.html:115-121` | Descripción editable y datos globales de contacto |
-| Metadatos | Título y descripción de la home | `index.html:6-8` | Edición de contenido/SEO en WordPress, sin acceso a código |
+| Portada | Antetítulo, título, párrafo, texto de CTA principal/secundario y lista de sectores atendidos | `index.html:58-74` | Pantalla «Inicio» con campos de texto, enlaces y lista de sectores |
+| Franja de presentación | Rótulo y frase de capacidades | `index.html:81-87` | Campos de «Inicio» |
+| Introducción a servicios | Antetítulo, titular y párrafo introductorio | `index.html:91-97` | Campos de «Inicio» |
+| Tarjetas de servicios | Resumen, lista de subservicios verificados, icono/imagen y orden de cada una de las cuatro áreas | `index.html:99-192` | Pantalla «Servicios» con cuatro fichas precargadas |
+| Ecosistema de control | Título, descripción y etiquetas de marcas de PLC y Robots/Cobots | `index.html:194-224` | Campos de «Inicio» / «Control» |
+| Presentación de la empresa | Antetítulo, título, párrafos e información de Misión, Visión y Política de Calidad | `index.html:228-266` | Pantalla «Inicio»; detalle ampliado en «Nosotros» |
+| Introducción a galería | Antetítulo, titular y párrafo | `index.html:270-276` | Campos de «Inicio» |
+| Elementos de galería | 5 fotografías con título, descripción técnica y contador (`01 / 05` a `05 / 05`) | `index.html:278-346` | Cada elemento de galería tendrá título, leyenda y texto alternativo editables |
+| Contacto y solicitud técnica | Antetítulo, titular, correo, teléfono, dos ubicaciones (El Marqués y Pedro Escobedo) y formulario | `index.html:350-439` | Campos de «Inicio» y datos globales de contacto |
+| Pie de página | Descripción de ICAP, enlaces de especialidades, correo, teléfono y ubicaciones | `index.html:442-476` | Descripción editable y datos globales de contacto |
+| Metadatos y SEO | Título, descripción, Open Graph y JSON-LD (`ProfessionalService`) | `index.html:6-42` | Edición de contenido/SEO en WordPress, sin acceso a código |
 
 Los rótulos decorativos, numeración, iconos, disposición y estilos se conservan en el tema. Las etiquetas de navegación y la identidad del logo se administrarán como configuración de diseño por el Administrador, no como campos cotidianos del cliente.
 
@@ -37,8 +37,9 @@ Los rótulos decorativos, numeración, iconos, disposición y estilos se conserv
 | `assets/IngenieriaManufactura.webp` | Segunda foto de galería | Agregar, reemplazar, reordenar o retirar de la galería |
 | `assets/galeria-5.webp` | Tercera foto de galería | Agregar, reemplazar, reordenar o retirar de la galería |
 | `assets/galeria-6.webp` | Cuarta foto de galería | Agregar, reemplazar, reordenar o retirar de la galería |
+| `assets/IngenieriaMecanica.webp` | Quinta foto de galería (nave de ingeniería y ensamble) | Agregar, reemplazar, reordenar o retirar de la galería |
 
-También se conservan `assets/IngenieriaMecanica.webp` y los JPEG originales de las fotografías. No se usan actualmente en la home, pero pueden servir para páginas interiores o como originales de referencia. No se eliminarán durante la migración. Las nuevas imágenes deberán tener texto alternativo y dimensiones; la carga diferida seguirá reservada para imágenes fuera de portada.
+También se conservan los JPEG originales de las fotografías como respaldo de referencia. No se eliminarán durante la migración. Las nuevas imágenes deberán tener texto alternativo y dimensiones; la carga diferida seguirá reservada para imágenes fuera de portada.
 
 ## Enlaces actuales y destino previsto
 

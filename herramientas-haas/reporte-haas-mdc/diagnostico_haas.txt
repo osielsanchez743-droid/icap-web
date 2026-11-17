@@ -1,0 +1,221 @@
+DIAGNÓSTICO OFFLINE DE HAAS-LIVE-DIAGNOSTICS
+=======================================================
+Origen: C:\Users\osiel\AppData\Local\MonitorOEE\haas-live-diagnostics\sesiones
+Archivos JSONL: 2
+Eventos analizados: 7385
+Periodo UTC: 2026-11-12T17:01:36.956279+00:00 → 2026-11-12T17:28:15.483577+00:00
+
+TIPOS DE EVENTO
+  ui.operator.telemetry: 1141
+  ui.operator.mdc.detail: 1141
+  operator.telemetry.applied: 1141
+  tcp.write.begin: 710
+  tcp.write.end: 710
+  tcp.rx: 710
+  tcp.processed: 710
+  ui.operator.state: 500
+  tcp.telemetry: 232
+  tcp.status.unclassified: 120
+  ui.operator.pending: 51
+  tcp.state.changed: 36
+  operator.state.applied: 36
+  operator.busy.save.request: 30
+  operator.busy.save.returned: 30
+  diagnostic.alert: 17
+  tcp.error: 15
+  tcp.socket.close: 15
+  operator.connection.error: 15
+  tcp.connected: 15
+  operator.stop.opened: 3
+  session.start: 2
+  client.attached: 2
+  session.stop: 2
+  tcp.state.expired: 1
+
+RESPUESTAS DEL PROTOCOLO OBSERVADAS
+  Auxiliar MACRO/MODE/tiempo: 928
+  STATUS BUSY/IDLE/ALARM sin coma (ambiguo): 388
+  PROGRAM con BUSY/IDLE: 222
+  Otros mensajes MDC: 2
+
+ESTADOS EXTRAÍDOS DE FORMATOS RECONOCIBLES (NO EQUIVALEN A SEGMENTOS CONFIRMADOS)
+  IDLE: 222
+
+ANOMALÍAS (indicadores de eventos, no diagnósticos de causa)
+  STATUS sin coma: interpretación no confirmada: 388
+  Evento de error/cierre/silencio TCP: 15
+
+HUECOS ≥ 30 SEGUNDOS DESPUÉS DE ESTADO VÁLIDO (heurística)
+  2026-11-12T17:03:04.580124+00:00 → 2026-11-12T17:24:31.207669+00:00: 1286.6 s
+  2026-11-12T17:25:55.280760+00:00 → 2026-11-12T17:26:25.308054+00:00: 30.0 s
+
+MUESTRA CRONOLÓGICA
+  2026-11-12T17:01:38.040038+00:00 | tcp.error |  | events-001.jsonl:6
+    Info: DESCONOCIDO
+  2026-11-12T17:01:48.226986+00:00 | tcp.rx | status-sin-coma | events-001.jsonl:139
+    MDC: >>STATUS BUSY
+    Info: DESCONOCIDO >>STATUS BUSY
+  2026-11-12T17:02:00.365378+00:00 | tcp.write.end |  | events-001.jsonl:279
+    Info: DESCONOCIDO
+  2026-11-12T17:02:12.556741+00:00 | tcp.connected |  | events-001.jsonl:421
+    Info: DESCONOCIDO
+  2026-11-12T17:02:21.819312+00:00 | tcp.socket.close |  | events-001.jsonl:555
+    Info: DESCONECTADO
+  2026-11-12T17:02:26.361117+00:00 | tcp.processed | operativo-program | events-001.jsonl:671
+    MDC: >>PROGRAM, MDI, IDLE, PARTS, 19537
+    Info: >IDLE >IDLE >>PROGRAM, MDI, IDLE, PARTS, 19537
+  2026-11-12T17:02:31.004886+00:00 | tcp.rx | operativo-program | events-001.jsonl:788
+    MDC: >>PROGRAM, MDI, IDLE, PARTS, 19537
+    Info: >IDLE >>PROGRAM, MDI, IDLE, PARTS, 19537
+  2026-11-12T17:02:35.572564+00:00 | tcp.write.begin |  | events-001.jsonl:902
+    Info: >IDLE
+  2026-11-12T17:02:39.158107+00:00 | tcp.write.begin |  | events-001.jsonl:1003
+    Info: >IDLE
+  2026-11-12T17:02:43.755712+00:00 | tcp.write.begin |  | events-001.jsonl:1111
+    Info: >IDLE
+  2026-11-12T17:02:48.376785+00:00 | tcp.processed | operativo-program | events-001.jsonl:1226
+    MDC: >>PROGRAM, MDI, IDLE, PARTS, 19537
+    Info: >IDLE >IDLE >>PROGRAM, MDI, IDLE, PARTS, 19537
+  2026-11-12T17:02:52.961612+00:00 | tcp.write.end |  | events-001.jsonl:1342
+    Info: >IDLE
+  2026-11-12T17:02:56.511707+00:00 | tcp.write.end |  | events-001.jsonl:1441
+    Info: >IDLE
+  2026-11-12T17:03:01.158407+00:00 | tcp.write.begin |  | events-001.jsonl:1558
+    Info: >IDLE
+  2026-11-12T17:24:31.946335+00:00 | tcp.write.begin |  | events-001.jsonl:7
+    Info: >IDLE
+  2026-11-12T17:24:36.546492+00:00 | tcp.rx | operativo-program | events-001.jsonl:121
+    MDC: >>PROGRAM, MDI, IDLE, PARTS, 19540
+    Info: >IDLE >>PROGRAM, MDI, IDLE, PARTS, 19540
+  2026-11-12T17:24:41.132802+00:00 | tcp.write.begin |  | events-001.jsonl:237
+    Info: >IDLE
+  2026-11-12T17:24:44.680882+00:00 | tcp.write.end |  | events-001.jsonl:339
+    Info: >IDLE
+  2026-11-12T17:24:49.241181+00:00 | tcp.write.end |  | events-001.jsonl:448
+    Info: >IDLE
+  2026-11-12T17:24:53.858911+00:00 | tcp.processed | operativo-program | events-001.jsonl:561
+    MDC: >>PROGRAM, MDI, IDLE, PARTS, 19540
+    Info: >IDLE >IDLE >>PROGRAM, MDI, IDLE, PARTS, 19540
+  2026-11-12T17:24:58.580823+00:00 | tcp.rx | operativo-program | events-001.jsonl:678
+    MDC: >>PROGRAM, MDI, IDLE, PARTS, 19540
+    Info: >IDLE >>PROGRAM, MDI, IDLE, PARTS, 19540
+  2026-11-12T17:25:03.127971+00:00 | tcp.write.begin |  | events-001.jsonl:792
+    Info: >IDLE
+  2026-11-12T17:25:06.708759+00:00 | tcp.write.begin |  | events-001.jsonl:891
+    Info: >IDLE
+  2026-11-12T17:25:11.310060+00:00 | tcp.write.begin |  | events-001.jsonl:1001
+    Info: >IDLE
+  2026-11-12T17:25:15.956010+00:00 | tcp.processed | operativo-program | events-001.jsonl:1116
+    MDC: >>PROGRAM, MDI, IDLE, PARTS, 19540
+    Info: >IDLE >IDLE >>PROGRAM, MDI, IDLE, PARTS, 19540
+  2026-11-12T17:25:20.541319+00:00 | tcp.write.end |  | events-001.jsonl:1232
+    Info: >IDLE
+  2026-11-12T17:25:24.109005+00:00 | tcp.write.end |  | events-001.jsonl:1332
+    Info: >IDLE
+  2026-11-12T17:25:28.673539+00:00 | tcp.write.end |  | events-001.jsonl:1441
+    Info: >IDLE
+  2026-11-12T17:25:33.298600+00:00 | tcp.write.begin |  | events-001.jsonl:1556
+    Info: >IDLE
+  2026-11-12T17:25:37.907616+00:00 | tcp.rx | operativo-program | events-001.jsonl:1670
+    MDC: >>PROGRAM, MDI, IDLE, PARTS, 19540
+    Info: >IDLE >>PROGRAM, MDI, IDLE, PARTS, 19540
+  2026-11-12T17:25:42.508454+00:00 | tcp.write.begin |  | events-001.jsonl:1786
+    Info: >IDLE
+  2026-11-12T17:25:46.104662+00:00 | tcp.write.end |  | events-001.jsonl:1886
+    Info: >IDLE
+  2026-11-12T17:25:50.675863+00:00 | tcp.write.end |  | events-001.jsonl:1998
+    Info: >IDLE
+  2026-11-12T17:25:55.280760+00:00 | tcp.processed | operativo-program | events-001.jsonl:2110
+    MDC: >>PROGRAM, , IDLE, PARTS, 19540
+    Info: >IDLE >IDLE >>PROGRAM, , IDLE, PARTS, 19540
+  2026-11-12T17:25:58.802961+00:00 | tcp.write.begin |  | events-001.jsonl:2213
+    Info: DESCONOCIDO
+  2026-11-12T17:26:03.373387+00:00 | tcp.rx | status-sin-coma | events-001.jsonl:2322
+    MDC: >>STATUS BUSY
+    Info: DESCONOCIDO >>STATUS BUSY
+  2026-11-12T17:26:06.836588+00:00 | tcp.write.begin |  | events-001.jsonl:2412
+    Info: DESCONOCIDO
+  2026-11-12T17:26:10.333478+00:00 | tcp.write.end |  | events-001.jsonl:2509
+    Info: DESCONOCIDO
+  2026-11-12T17:26:14.913845+00:00 | tcp.rx | status-sin-coma | events-001.jsonl:2615
+    MDC: >>STATUS BUSY
+    Info: DESCONOCIDO >>STATUS BUSY
+  2026-11-12T17:26:18.396594+00:00 | tcp.write.end |  | events-001.jsonl:2709
+    Info: DESCONOCIDO
+  2026-11-12T17:26:22.959596+00:00 | tcp.write.begin |  | events-001.jsonl:2822
+    Info: DESCONOCIDO
+  2026-11-12T17:26:26.458309+00:00 | tcp.status.unclassified | status-sin-coma | events-001.jsonl:2912
+    MDC: >>STATUS BUSY
+    Info: DESCONOCIDO >>STATUS BUSY
+  2026-11-12T17:26:29.968161+00:00 | tcp.write.begin |  | events-001.jsonl:3008
+    Info: DESCONOCIDO
+  2026-11-12T17:26:34.495208+00:00 | tcp.write.end |  | events-001.jsonl:3119
+    Info: DESCONOCIDO
+  2026-11-12T17:26:38.033805+00:00 | tcp.processed | status-sin-coma | events-001.jsonl:3209
+    MDC: >>STATUS BUSY
+    Info: DESCONOCIDO DESCONOCIDO >>STATUS BUSY
+  2026-11-12T17:26:41.556337+00:00 | tcp.write.begin |  | events-001.jsonl:3306
+    Info: DESCONOCIDO
+  2026-11-12T17:26:46.142318+00:00 | tcp.rx | status-sin-coma | events-001.jsonl:3413
+    MDC: >>STATUS BUSY
+    Info: DESCONOCIDO >>STATUS BUSY
+  2026-11-12T17:26:49.589674+00:00 | tcp.write.begin |  | events-001.jsonl:3503
+    Info: DESCONOCIDO
+  2026-11-12T17:26:53.100535+00:00 | tcp.write.end |  | events-001.jsonl:3603
+    Info: DESCONOCIDO
+  2026-11-12T17:26:57.678936+00:00 | tcp.rx | status-sin-coma | events-001.jsonl:3709
+    MDC: >>STATUS BUSY
+    Info: DESCONOCIDO >>STATUS BUSY
+  2026-11-12T17:27:01.135414+00:00 | tcp.write.end |  | events-001.jsonl:3801
+    Info: DESCONOCIDO
+  2026-11-12T17:27:05.698390+00:00 | tcp.write.begin |  | events-001.jsonl:3913
+    Info: DESCONOCIDO
+  2026-11-12T17:27:09.230732+00:00 | tcp.status.unclassified | status-sin-coma | events-001.jsonl:4006
+    MDC: >>STATUS BUSY
+    Info: DESCONOCIDO >>STATUS BUSY
+  2026-11-12T17:27:12.732190+00:00 | tcp.write.begin |  | events-001.jsonl:4104
+    Info: DESCONOCIDO
+  2026-11-12T17:27:17.279397+00:00 | tcp.write.end |  | events-001.jsonl:4210
+    Info: DESCONOCIDO
+  2026-11-12T17:27:20.783701+00:00 | tcp.processed | status-sin-coma | events-001.jsonl:4300
+    MDC: >>STATUS BUSY
+    Info: DESCONOCIDO DESCONOCIDO >>STATUS BUSY
+  2026-11-12T17:27:24.286492+00:00 | tcp.write.begin |  | events-001.jsonl:4397
+    Info: DESCONOCIDO
+  2026-11-12T17:27:28.855652+00:00 | tcp.write.begin |  | events-001.jsonl:4519
+    Info: DESCONOCIDO
+  2026-11-12T17:27:32.375403+00:00 | tcp.write.end |  | events-001.jsonl:4615
+    Info: DESCONOCIDO
+  2026-11-12T17:27:36.962697+00:00 | tcp.rx | status-sin-coma | events-001.jsonl:4722
+    MDC: >>STATUS BUSY
+    Info: DESCONOCIDO >>STATUS BUSY
+  2026-11-12T17:27:40.433683+00:00 | tcp.write.end |  | events-001.jsonl:4813
+    Info: DESCONOCIDO
+  2026-11-12T17:27:45.000220+00:00 | tcp.write.begin |  | events-001.jsonl:4925
+    Info: DESCONOCIDO
+  2026-11-12T17:27:48.513432+00:00 | tcp.status.unclassified | status-sin-coma | events-001.jsonl:5019
+    MDC: >>STATUS BUSY
+    Info: DESCONOCIDO >>STATUS BUSY
+  2026-11-12T17:27:51.971316+00:00 | tcp.write.end |  | events-001.jsonl:5109
+    Info: DESCONOCIDO
+  2026-11-12T17:27:56.548843+00:00 | tcp.write.end |  | events-001.jsonl:5223
+    Info: DESCONOCIDO
+  2026-11-12T17:28:00.061523+00:00 | tcp.processed | status-sin-coma | events-001.jsonl:5313
+    MDC: >>STATUS BUSY
+    Info: DESCONOCIDO DESCONOCIDO >>STATUS BUSY
+  2026-11-12T17:28:03.581144+00:00 | tcp.write.begin |  | events-001.jsonl:5411
+    Info: DESCONOCIDO
+  2026-11-12T17:28:08.110708+00:00 | tcp.write.end |  | events-001.jsonl:5519
+    Info: DESCONOCIDO
+  2026-11-12T17:28:11.606932+00:00 | tcp.write.begin |  | events-001.jsonl:5610
+    Info: DESCONOCIDO
+  2026-11-12T17:28:15.115758+00:00 | tcp.write.end |  | events-001.jsonl:5708
+    Info: DESCONOCIDO
+
+LIMITACIONES
+- El JSONL debe incluir campos con líneas MDC para analizar el protocolo.
+- Los nombres de campos se detectan por heurísticas: inspeccionar si los resultados aparecen vacíos.
+- STATUS BUSY sin coma no se convierte en estado operativo válido.
+- Los gaps en JSONL no prueban desconexión del socket; son indicios temporales.
+- No se consulta la CNC, no se escriben datos en MySQL ni se cambia MonitorOEE.
+- No se pueden demostrar errores de red ni causas únicas sin observar el contexto de la aplicación.

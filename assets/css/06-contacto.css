@@ -1,0 +1,414 @@
+/* ==========================================================================
+   06. CONTACTO, CANALES DIRECTOS Y FORMULARIO TÉCNICO
+   ========================================================================== */
+
+.contact-page-section {
+  background: var(--bg-base);
+  color: var(--text-primary);
+  padding-block: var(--space-section);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+  gap: clamp(24px, 4.5vw, 56px);
+  align-items: start;
+}
+
+.contact-channels {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.channel-card {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-strong);
+  border-left: 4px solid var(--icap-orange);
+  padding: clamp(18px, 2.2vw, 24px);
+  box-shadow: var(--shadow-card);
+}
+
+.channel-card-wa {
+  border-left-color: #25D366;
+}
+
+.channel-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--orange-contrast);
+  margin-bottom: 6px;
+}
+
+.channel-label-wa {
+  color: #25D366;
+}
+
+.channel-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: clamp(17px, 1.8vw, 22px);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  overflow-wrap: anywhere;
+}
+.channel-value:hover { color: var(--orange-contrast); }
+
+.channel-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.button-wa {
+  background: #25D366;
+  color: #0b2212;
+  border-color: #1ea952;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.25);
+}
+.button-wa:hover, .button-wa:focus-visible {
+  background: #20ba5a;
+  color: #ffffff;
+}
+
+.button-gmail {
+  background: #ea4335;
+  color: #ffffff;
+  border-color: #d33828;
+}
+.button-gmail:hover, .button-gmail:focus-visible {
+  background: #c5221f;
+}
+
+.button-outlook {
+  background: #0078d4;
+  color: #ffffff;
+  border-color: #0060aa;
+}
+.button-outlook:hover, .button-outlook:focus-visible {
+  background: #005a9e;
+}
+
+/* Redes y Canales Oficiales */
+.social-channels-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-grid);
+  border-left: 4px solid var(--border-strong);
+  padding: clamp(16px, 2vw, 22px);
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-card);
+}
+.social-channels-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+.social-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--bg-base);
+  border: 1px solid var(--border-grid);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.social-chip:hover {
+  border-color: var(--icap-orange);
+  background: var(--bg-surface);
+  color: var(--orange-contrast);
+  transform: translateY(-2px);
+}
+.social-chip svg {
+  flex-shrink: 0;
+}
+.social-chip-wa:hover { border-color: #25D366; color: #25D366; }
+.social-chip-li:hover { border-color: #0077b5; color: #0077b5; }
+.social-chip-yt:hover { border-color: #ff0000; color: #ff0000; }
+.social-chip-fb:hover { border-color: #1877f2; color: #1877f2; }
+.social-chip-maps:hover { border-color: #34a853; color: #34a853; }
+
+/* Modal selector de envío de requerimiento */
+.send-options-dialog {
+  border: 1px solid var(--border-strong);
+  border-top: 4px solid var(--icap-orange);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  padding: clamp(24px, 3.5vw, 36px);
+  max-width: 540px;
+  width: calc(100% - 32px);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.45);
+}
+.send-options-dialog::backdrop {
+  background: rgba(10, 14, 18, 0.78);
+  backdrop-filter: blur(4px);
+}
+.send-options-dialog h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 800;
+}
+.send-options-dialog p {
+  margin: 0 0 20px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.dialog-action-list {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.dialog-action-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border: 1px solid var(--border-grid);
+  background: var(--bg-base);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.dialog-action-item:hover {
+  border-color: var(--icap-orange);
+  background: var(--bg-surface);
+  transform: translateX(4px);
+}
+.dialog-action-item-wa:hover { border-color: #25D366; }
+.dialog-action-item-gmail:hover { border-color: #ea4335; }
+.dialog-action-item-outlook:hover { border-color: #0078d4; }
+.dialog-close-btn {
+  margin-top: 8px;
+  width: 100%;
+}
+
+.copy-feedback {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--orange-contrast);
+}
+
+.channel-note { margin: 0; font-size: 13px; color: var(--text-secondary); }
+
+.locations-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+.location-item {
+  padding: 18px;
+  border: 1px solid var(--border-grid);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+.location-item h3 {
+  margin: 0 0 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--orange-contrast);
+}
+.location-item address { font-style: normal; font-size: 13px; line-height: 1.6; color: var(--text-secondary); }
+.location-map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--orange-contrast);
+  margin-top: 4px;
+}
+.location-map-link:hover { text-decoration: underline; }
+
+/* Visor Cartográfico Interactivo de Plantas (Sede 01 y Sede 02) */
+.map-viewer-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-top: 3px solid var(--icap-orange);
+  padding: 14px;
+  box-shadow: var(--shadow-card);
+}
+.map-viewer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.map-viewer-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--orange-contrast);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.map-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.map-tab-btn {
+  padding: 6px 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-base);
+  color: var(--text-secondary);
+  cursor: pointer;
+  clip-path: var(--chamfer-sm);
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.map-tab-btn:hover { border-color: var(--icap-orange); color: var(--text-primary); }
+.map-tab-btn.is-active {
+  background: var(--icap-orange);
+  border-color: var(--icap-orange);
+  color: var(--text-on-orange);
+}
+.map-frame-wrap {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  border: 1px solid var(--border-grid);
+  background: #101418;
+  overflow: hidden;
+}
+.map-frame-wrap iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+[data-theme="dark"] .map-frame-wrap iframe {
+  filter: invert(90%) hue-rotate(180deg) brightness(95%) contrast(92%);
+}
+.map-viewer-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* Selector de planos / archivos CAD en el formulario */
+.cad-docs-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+.cad-doc-option {
+  position: relative;
+  cursor: pointer;
+}
+.cad-doc-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.cad-doc-box {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  height: 100%;
+  padding: 10px 11px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-base);
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+.cad-doc-box strong {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+.cad-doc-box span {
+  font-size: 11.5px;
+  color: var(--text-secondary);
+  line-height: 1.35;
+}
+.cad-doc-option input:checked + .cad-doc-box {
+  border-color: var(--icap-orange);
+  background: var(--orange-subtle);
+  box-shadow: inset 3px 0 0 var(--icap-orange);
+}
+.cad-doc-option input:focus-visible + .cad-doc-box {
+  outline: 2px solid var(--icap-orange);
+  outline-offset: 2px;
+}
+
+/* Formulario de solicitud técnica */
+.contact-form-card {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  padding: clamp(20px, 3vw, 36px);
+  border: 1px solid var(--border-strong);
+  border-top: 4px solid var(--icap-orange);
+  box-shadow: var(--shadow-card);
+}
+.contact-form-card h2 { margin: 0 0 8px; font-size: clamp(20px, 2vw, 24px); letter-spacing: var(--tracking-tight); }
+.form-intro { margin: 0 0 20px; font-size: 14px; color: var(--text-secondary); }
+
+.project-form { display: grid; gap: 14px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-field { display: flex; flex-direction: column; gap: 6px; }
+.form-field label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+.form-field label span { color: var(--orange-contrast); }
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-size: 16px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  background: var(--bg-surface);
+  border-color: var(--icap-orange);
+}
+
+.form-legal { margin: 4px 0 0; font-size: 12px; color: var(--text-muted); line-height: 1.5; }

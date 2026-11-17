@@ -1,0 +1,145 @@
+/* ==========================================================================
+   01. TOKENS DE DISEÑO (CLARO / OSCURO), LUZ AMBIENTAL Y ANIMACIONES BASE
+   ========================================================================== */
+
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+  --icap-orange: #f3803f;
+  --icap-orange-hover: #e06824;
+  --orange-contrast: #b84809;
+  --orange-subtle: rgba(243, 128, 63, 0.13);
+  --orange-glow: rgba(243, 128, 63, 0.25);
+  --text-on-orange: #141210;
+
+  --bg-base: #f2f3ef;
+  --bg-surface: #ffffff;
+  --bg-elevated: #e7e9e2;
+  --bg-panel: #16191d;
+  --bg-header: rgba(242, 243, 239, 0.9);
+  --bg-footer: #101316;
+
+  --text-primary: #12161a;
+  --text-secondary: #353e46;
+  --text-muted: #546069;
+  --border-grid: #cfd5da;
+  --border-strong: #96a0a8;
+  --grid-pattern: rgba(20, 24, 28, 0.048);
+  --hero-spotlight: radial-gradient(circle at 18% 25%, rgba(243, 128, 63, 0.16), transparent 55%);
+
+  --shadow-card: 0 12px 28px rgba(18, 21, 24, 0.08);
+  --shadow-hover: 0 18px 38px rgba(243, 128, 63, 0.16);
+  --shadow-header: 0 8px 24px rgba(18, 21, 24, 0.08);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --icap-orange: #f3803f;
+  --icap-orange-hover: #ff9c63;
+  --orange-contrast: #ff9457;
+  --orange-subtle: rgba(243, 128, 63, 0.16);
+  --orange-glow: rgba(243, 128, 63, 0.32);
+  --text-on-orange: #141210;
+
+  --bg-base: #0e1114;
+  --bg-surface: #15191e;
+  --bg-elevated: #1c2228;
+  --bg-panel: #0a0c0e;
+  --bg-header: rgba(14, 17, 20, 0.9);
+  --bg-footer: #090b0d;
+
+  --text-primary: #f2f5f7;
+  --text-secondary: #c5cdd4;
+  --text-muted: #8f9ba5;
+  --border-grid: #262d35;
+  --border-strong: #3e4852;
+  --grid-pattern: rgba(255, 255, 255, 0.038);
+  --hero-spotlight: radial-gradient(circle at 18% 25%, rgba(243, 128, 63, 0.18), transparent 58%);
+
+  --shadow-card: 0 16px 36px rgba(0, 0, 0, 0.45);
+  --shadow-hover: 0 20px 42px rgba(243, 128, 63, 0.2);
+  --shadow-header: 0 10px 28px rgba(0, 0, 0, 0.55);
+}
+
+:root {
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Consolas", "Source Code Pro", monospace;
+  --tracking-tight: -0.028em;
+  --tracking-heading: -0.034em;
+  --tracking-mono: 0.12em;
+
+  --shell: 1600px;
+  --gutter: clamp(16px, 3.2vw, 56px);
+  --space-section: clamp(56px, 6.8vw, 108px);
+  --header-h: 74px;
+
+  --chamfer-sm: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  --chamfer-md: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+  --chamfer-lg: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 22px 100%, 0 calc(100% - 22px));
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 16px);
+  font-family: var(--font-sans);
+  background: var(--bg-base);
+  color: var(--text-primary);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
+  line-height: 1.55;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  transition: background-color 0.25s ease, color 0.25s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 2px solid var(--icap-orange); outline-offset: 3px; }
+
+h1, h2, h3, h4, p { margin-top: 0; }
+h1, h2 { letter-spacing: var(--tracking-heading); }
+h1 em, h2 em {
+  font-style: normal;
+  color: var(--icap-orange);
+  background: linear-gradient(120deg, var(--icap-orange) 0%, #ffa873 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  padding: 5px 11px;
+  font-family: var(--font-mono);
+  font-size: clamp(10px, 0.9vw, 11px);
+  font-weight: 700;
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--orange-contrast);
+  background: var(--orange-subtle);
+  border-left: 3px solid var(--icap-orange);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.eyebrow::before { content: "//"; color: var(--icap-orange); font-weight: 800; }
+.eyebrow-line { display: none; }
+
+/* Animación de entrada al hacer scroll */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}

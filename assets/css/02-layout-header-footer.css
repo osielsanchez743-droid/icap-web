@@ -1,0 +1,369 @@
+/* ==========================================================================
+   02. ESTRUCTURA GLOBAL, CABECERA CON LÍNEA DE MARCA, BOTONES Y FOOTER
+   ========================================================================== */
+
+.shell {
+  width: min(calc(100% - 2 * var(--gutter)), var(--shell));
+  margin-inline: auto;
+}
+
+.section { padding-block: var(--space-section); }
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 28px;
+  margin-bottom: clamp(28px, 4vw, 44px);
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--border-grid);
+  position: relative;
+}
+.section-heading::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 72px;
+  height: 3px;
+  background: var(--icap-orange);
+}
+
+.section-heading h2, .about h2, .cta-banner h2, .contact h2 {
+  margin: 0;
+  font-size: clamp(26px, 3.8vw, 52px);
+  line-height: 1.08;
+  font-weight: 800;
+}
+.section-heading h2 span { color: var(--text-muted); }
+
+.section-heading > p,
+.section-heading > div > p:not(.eyebrow) {
+  max-width: 420px;
+  margin: 0 0 6px;
+  color: var(--text-secondary);
+  font-size: clamp(14px, 1.1vw, 15px);
+  line-height: 1.65;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 1000;
+  top: -120px;
+  left: 16px;
+  background: var(--icap-orange);
+  color: var(--text-on-orange);
+  font-weight: 800;
+  padding: 12px 18px;
+  clip-path: var(--chamfer-sm);
+}
+.skip-link:focus { top: 14px; }
+
+/* Cabecera con franja superior naranja industrial */
+.site-header {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-top: 3px solid var(--icap-orange);
+  border-bottom: 1px solid var(--border-grid);
+  background: var(--bg-header);
+  backdrop-filter: blur(14px);
+  color: var(--text-primary);
+  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.site-header.is-scrolled { box-shadow: var(--shadow-header); }
+
+.header-inner {
+  min-height: calc(var(--header-h) - 3px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  flex-shrink: 0;
+}
+.brand img {
+  width: clamp(114px, 10vw, 138px);
+  height: auto;
+  filter: drop-shadow(0 2px 8px rgba(243, 128, 63, 0.14));
+}
+.brand span {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  border-left: 2px solid var(--icap-orange);
+  padding-left: 11px;
+  color: var(--text-secondary);
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1.8vw, 26px);
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2vw, 30px);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.main-nav > a:not(.nav-contact) {
+  position: relative;
+  padding-block: 6px;
+  color: var(--text-secondary);
+  transition: color 0.2s;
+}
+.main-nav > a:not(.nav-contact)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--icap-orange);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.22s ease;
+}
+.main-nav > a:not(.nav-contact):hover,
+.main-nav > a:not(.nav-contact):focus-visible,
+.main-nav > a:not(.nav-contact)[aria-current="page"] { color: var(--text-primary); }
+.main-nav > a:not(.nav-contact):hover::after,
+.main-nav > a:not(.nav-contact):focus-visible::after,
+.main-nav > a:not(.nav-contact)[aria-current="page"]::after { transform: scaleX(1); }
+
+.nav-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--icap-orange);
+  color: var(--text-on-orange);
+  padding: 9px 16px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  clip-path: var(--chamfer-sm);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  white-space: nowrap;
+}
+.nav-contact:hover,
+.nav-contact:focus-visible {
+  background: var(--icap-orange-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px var(--orange-glow);
+}
+
+/* Conmutador Claro / Oscuro */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  clip-path: var(--chamfer-sm);
+  transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+  flex-shrink: 0;
+}
+.theme-toggle:hover, .theme-toggle:focus-visible {
+  border-color: var(--icap-orange);
+  color: var(--orange-contrast);
+}
+.theme-toggle svg { width: 15px; height: 15px; stroke: var(--icap-orange); flex-shrink: 0; }
+.theme-icon-sun { display: none; }
+.theme-icon-moon { display: block; }
+[data-theme="dark"] .theme-icon-sun { display: block; }
+[data-theme="dark"] .theme-icon-moon { display: none; }
+.menu-toggle { display: none; }
+
+/* Botones y enlaces */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  min-height: 48px;
+  padding: 12px 22px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  clip-path: var(--chamfer-md);
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.button:hover { transform: translateY(-2px); }
+.button-orange {
+  background: linear-gradient(135deg, var(--icap-orange) 0%, #ff985a 100%);
+  color: var(--text-on-orange);
+  box-shadow: 0 8px 22px var(--orange-glow);
+}
+.button-orange:hover, .button-orange:focus-visible {
+  background: var(--icap-orange-hover);
+  box-shadow: 0 12px 28px var(--orange-glow);
+}
+.button-dark { background: #14181c; color: #ffffff; }
+.button-dark:hover, .button-dark:focus-visible { background: #262c32; }
+.button-outline-light { background: transparent; border-color: var(--border-strong); color: var(--text-primary); }
+.button-outline-light:hover, .button-outline-light:focus-visible { border-color: var(--icap-orange); color: var(--orange-contrast); }
+.button-sm { min-height: 40px; padding: 8px 15px; font-size: 11px; gap: 10px; clip-path: var(--chamfer-sm); }
+.button-full { width: 100%; }
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding-block: 8px;
+  border-bottom: 2px solid var(--icap-orange);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  transition: color 0.2s, gap 0.2s;
+}
+.text-link:hover, .text-link:focus-visible { color: var(--orange-contrast); gap: 14px; }
+
+/* Franja CTA y Pie de página */
+.cta-banner {
+  background: linear-gradient(125deg, #f3803f 0%, #d95d16 100%);
+  color: var(--text-on-orange);
+  border-top: 1px solid var(--border-strong);
+  position: relative;
+  overflow: hidden;
+}
+.cta-banner-inner { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; padding-block: clamp(48px, 6vw, 80px); }
+.cta-banner .eyebrow { background: rgba(20, 18, 16, 0.12); border-left-color: #141210; color: #141210; }
+.cta-banner .eyebrow::before { color: #141210; }
+.cta-banner h2 { margin-bottom: 12px; }
+.cta-banner h2 em { background: none; -webkit-text-fill-color: #ffffff; color: #ffffff; }
+.cta-banner p:not(.eyebrow) { max-width: 480px; margin: 0; font-size: 15px; line-height: 1.6; font-weight: 600; }
+
+.site-footer { background: var(--bg-footer); color: #eef1f3; border-top: 2px solid var(--icap-orange); }
+.footer-main { display: grid; grid-template-columns: 1.2fr 0.9fr 1fr 1.1fr; gap: clamp(24px, 3.5vw, 40px); padding-block: 52px 42px; }
+.footer-brand img { width: 142px; height: auto; margin-bottom: 14px; }
+.footer-brand p, .footer-main address { color: #9ba5ad; font-size: 13px; line-height: 1.75; font-style: normal; }
+.footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+.footer-socials a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #2b333a;
+  background: #171b1f;
+  color: #c5ccd1;
+  transition: all 0.2s ease;
+  margin-bottom: 0;
+}
+.footer-socials a:hover {
+  border-color: var(--icap-orange);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+.footer-socials a.social-wa:hover {
+  border-color: #25D366;
+  color: #25D366;
+}
+
+.footer-main h2 { margin: 0 0 14px; font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--icap-orange); }
+.footer-main a { display: block; margin-bottom: 10px; color: #c5ccd1; font-size: 13px; overflow-wrap: anywhere; transition: color 0.2s; }
+.footer-main a:hover, .footer-bottom a:hover { color: var(--icap-orange); }
+
+.footer-link-icon {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+}
+.footer-link-icon svg {
+  flex-shrink: 0;
+  color: var(--icap-orange);
+}
+.footer-link-wa svg {
+  color: #25D366;
+}
+.footer-link-wa:hover {
+  color: #25D366 !important;
+}
+
+.footer-link-maps {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--icap-orange) !important;
+}
+
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 18px; border-top: 1px solid #252b31; color: #9ba5ad; font-family: var(--font-mono); font-size: 11px; }
+
+/* Botón flotante directo de WhatsApp */
+.whatsapp-float {
+  position: fixed;
+  z-index: 99;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px 10px 14px;
+  background: #25D366;
+  color: #ffffff;
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.whatsapp-float:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.55);
+  color: #ffffff;
+}
+.whatsapp-float svg {
+  flex-shrink: 0;
+}
+@media (max-width: 640px) {
+  .whatsapp-float {
+    bottom: 18px;
+    right: 18px;
+    padding: 12px;
+  }
+  .whatsapp-float-label {
+    display: none;
+  }
+}

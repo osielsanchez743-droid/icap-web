@@ -1,5 +1,5 @@
-# Instalaciones locales de WordPress (el tema propio vivirá fuera de estas carpetas).
-/wordpress/
+# Instalaciones completas de WordPress oficial (descarga del CMS)
+/wordpress/wordpress/
 /wp/
 /wp-admin/
 /wp-includes/
@@ -32,3 +32,6 @@ desktop.ini
 /.idea/
 /.chrome-*/
 /preview-*.png
+
+# Scripts locales de diagnóstico industrial ajenos al sitio web.
+/pruebaconexio.py

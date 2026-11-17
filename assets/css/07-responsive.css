@@ -1,0 +1,114 @@
+/* ==========================================================================
+   07. ADAPTACIÓN RESPONSIVE (LAPTOP, TABLET Y CELULAR)
+   ========================================================================== */
+
+/* Laptops con altura compacta (p. ej. 1366x768 o 1536x864) */
+@media (min-width: 1025px) and (max-height: 820px) {
+  .hero-content { padding-block: 24px; }
+  h1 { font-size: clamp(30px, 3.6vw, 52px); margin-bottom: 12px; }
+  .hero-lead { margin-bottom: 18px; font-size: 15px; }
+  .viewport-frame { max-height: 44svh; }
+}
+
+/* Tablet horizontal y laptops pequeñas (<= 1120px) */
+@media (max-width: 1120px) {
+  .service-grid,
+  .about-pillars,
+  .gallery-grid-full,
+  .footer-main { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .process-timeline { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .about-pillars > :last-child { grid-column: 1 / -1; }
+  .capabilities-panel, .contact-grid { grid-template-columns: 1fr; }
+}
+
+/* Tablet vertical y pantallas medianas (<= 920px) */
+@media (max-width: 920px) {
+  :root { --header-h: 66px; }
+
+  .hero-grid-shell { grid-template-columns: 1fr; min-height: auto; }
+  .hero-content { border-right: 0; border-bottom: 1px solid var(--border-grid); }
+  .viewport-frame { max-height: none; }
+
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 42px;
+    height: 42px;
+    padding: 9px;
+    border: 1px solid var(--border-strong);
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    cursor: pointer;
+    clip-path: var(--chamfer-sm);
+  }
+  .menu-toggle span { display: block; width: 100%; height: 2px; background: currentColor; transition: transform 0.2s ease, opacity 0.2s ease; }
+  .menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: var(--header-h);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 12px var(--gutter) 22px;
+    background: var(--bg-surface);
+    border-bottom: 2px solid var(--icap-orange);
+    box-shadow: var(--shadow-header);
+  }
+  .main-nav.is-open { display: flex; }
+  .main-nav > a:not(.nav-contact) { padding: 14px 4px; border-bottom: 1px solid var(--border-grid); }
+  .main-nav .nav-contact { margin-top: 14px; padding: 14px 16px; justify-content: space-between; }
+
+  .section-heading, .cta-banner-inner { align-items: flex-start; flex-direction: column; gap: 16px; }
+  .service-detail-grid, .facilities-grid, .capabilities-groups, .about-top, .lightbox-content-split { grid-template-columns: 1fr; }
+  .process-timeline { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .about-photo { border-right: 0; border-bottom: 1px solid var(--border-grid); }
+  .service-detail-grid.is-reversed .service-detail-copy { order: 1; }
+  .service-detail-grid.is-reversed .service-detail-media { order: 2; }
+  .lightbox-stage { grid-template-columns: 1fr; }
+  .lightbox-nav { display: none; }
+}
+
+/* Celular (<= 640px) */
+@media (max-width: 640px) {
+  :root { --header-h: 62px; --gutter: 16px; }
+
+  .brand span, .theme-toggle span, .hero-content::before, .hero-content::after, .intro-mark, .viewport-overlay-tag span:last-child { display: none; }
+  .theme-toggle { padding: 0 10px; width: 40px; height: 40px; justify-content: center; }
+
+  .hero-grid-shell, .page-hero > .shell, .intro-band-inner, .about-top { border-inline: 0; }
+  .hero-content { padding: 28px 4px 32px; }
+  .hero-viewport { margin-inline: calc(-1 * var(--gutter)); padding: 20px var(--gutter); border-top: 1px solid var(--border-grid); }
+
+  .intro-band-inner { min-height: 0; display: block; padding: 24px 0; }
+  .section-index { display: inline-block; margin: 0 0 10px; }
+
+  .viewport-specs, .service-grid, .process-timeline, .brand-matrix-grid, .cad-docs-options, .about-pillars, .gallery-grid-preview, .gallery-grid-full, .locations-grid, .form-row, .footer-main { grid-template-columns: 1fr; }
+  .service-card { min-height: 0; }
+  .viewport-spec-item { border-right: 0; border-bottom: 1px solid var(--border-grid); }
+  .viewport-spec-item:last-child { border-bottom: 0; }
+  .gallery-feature { grid-row: auto; }
+
+  .subnav-pills { display: grid; grid-template-columns: 1fr 1fr; }
+  .subnav-pills a { text-align: center; padding: 10px 8px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+}
+
+/* Celulares pequeños (<= 390px) */
+@media (max-width: 390px) {
+  h1 { font-size: 30px; }
+  .hero-actions, .subnav-pills { grid-template-columns: 1fr; align-items: stretch; flex-direction: column; gap: 12px; }
+  .button { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}

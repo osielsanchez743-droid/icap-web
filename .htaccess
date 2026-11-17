@@ -1,0 +1,20 @@
+# Priorizar index.php en Apache (XAMPP / Hostinger)
+DirectoryIndex index.php index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Equivalencias de rutas heredadas del sitio en ASP.NET (icapmx.com)
+  RewriteRule ^Nosotros/?$ nosotros.php [L,NC]
+  RewriteRule ^Servicios-Proyectos/?$ servicios.php [L,NC]
+  RewriteRule ^Mecanico/?$ servicios.php#mecanico [L,NC,NE,R=302]
+  RewriteRule ^Manufactura/?$ servicios.php#manufactura [L,NC,NE,R=302]
+  RewriteRule ^Electrico/?$ servicios.php#electrico [L,NC,NE,R=302]
+  RewriteRule ^Control/?$ servicios.php#control [L,NC,NE,R=302]
+  RewriteRule ^contactanos/Contacto/?$ contacto.php [L,NC]
+
+  # Pantalla 404 personalizada para rutas inexistentes (funciona en subcarpeta XAMPP y raíz Hostinger)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . 404.php [L]
+</IfModule>

@@ -1,0 +1,61 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 2,
+  "settings": {
+    "appearanceTools": false,
+    "color": {
+      "custom": false,
+      "customDuotone": false,
+      "customGradient": false,
+      "defaultGradients": false,
+      "defaultPalette": false,
+      "palette": [
+        {
+          "name": "Naranja ICAP",
+          "slug": "icap-orange",
+          "color": "#f3803f"
+        },
+        {
+          "name": "Grafito Industrial",
+          "slug": "icap-graphite",
+          "color": "#111417"
+        },
+        {
+          "name": "Superficie Oscura",
+          "slug": "icap-surface-dark",
+          "color": "#171b1f"
+        },
+        {
+          "name": "Papel Técnico Claro",
+          "slug": "icap-light-bg",
+          "color": "#f2f3ef"
+        },
+        {
+          "name": "Blanco Puro",
+          "slug": "icap-white",
+          "color": "#ffffff"
+        }
+      ]
+    },
+    "typography": {
+      "customFontSize": false,
+      "dropCap": false,
+      "fontFamilies": [
+        {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "name": "Industrial Sans",
+          "slug": "industrial-sans"
+        },
+        {
+          "fontFamily": "Consolas, 'Courier New', monospace",
+          "name": "CAD Mono",
+          "slug": "cad-mono"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "1260px",
+      "wideSize": "1600px"
+    }
+  }
+}

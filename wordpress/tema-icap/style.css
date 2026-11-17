@@ -1,0 +1,20 @@
+/*
+Theme Name: ICAP Ingeniería Industrial
+Theme URI: https://icapmx.com/
+Author: ICAP Ingeniería
+Author URI: https://icapmx.com/
+Description: Tema corporativo industrial CAD/CNC para ICAP Ingeniería (Instrumentación, Control y Automatización de Procesos) en Querétaro. Incluye Modo Claro/Oscuro, Visor CAD interactivo, Matriz de Compatibilidad PLC/Robótica, Galería con Inspección Técnica y Visor Cartográfico de Sedes.
+Version: 1.0.0
+Requires at least: 6.2
+Tested up to: 6.7
+Requires PHP: 8.0
+Text Domain: icap-ingenieria
+*/
+
+@import url("assets/css/01-base-tokens.css");
+@import url("assets/css/02-layout-header-footer.css");
+@import url("assets/css/03-hero-portada.css");
+@import url("assets/css/04-servicios.css");
+@import url("assets/css/05-nosotros-galeria.css");
+@import url("assets/css/06-contacto.css");
+@import url("assets/css/07-responsive.css");
