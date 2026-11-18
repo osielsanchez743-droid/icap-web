@@ -23,6 +23,7 @@ $enlace_mailto_generado = '';
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
     $honeypot = trim((string) ($_POST['sitio_web_empresa'] ?? ''));
+    $form_ts  = (int) ($_POST['form_ts'] ?? 0);
     $nombre   = trim((string) ($_POST['nombre'] ?? ''));
     $empresa  = trim((string) ($_POST['empresa'] ?? ''));
     $correo   = trim((string) ($_POST['correo'] ?? ''));
@@ -30,7 +31,10 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
     $area     = trim((string) ($_POST['area'] ?? ''));
     $mensaje  = trim((string) ($_POST['mensaje'] ?? ''));
 
-    if ($honeypot !== '') {
+    $elapsed_sec = $form_ts > 0 ? (time() - $form_ts) : 99;
+    $url_count   = preg_match_all('/https?:\/\/|www\./i', $mensaje);
+
+    if ($honeypot !== '' || $elapsed_sec < 3 || $url_count > 1) {
         $estado_envio = 'error';
         $mensaje_estado = 'Solicitud bloqueada por el filtro antispam.';
     } elseif ($nombre === '' || $empresa === '' || !filter_var($correo, FILTER_VALIDATE_EMAIL) || $mensaje === '') {
@@ -67,25 +71,25 @@ require_once __DIR__ . '/includes/header.php';
       <div class="shell contact-grid">
         <div class="contact-info">
           <div class="contact-channels">
-            <!-- Correo -->
+            <!-- Correo protegido contra bots recolectores -->
             <div class="channel-card">
               <span class="channel-label">CORREO ELECTRÓNICO</span>
-              <a class="channel-value" href="mailto:<?= icap_esc($icap_contacto['correo']) ?>?subject=Consulta%20-%20ICAP%20Ingenier%C3%ADa"><?= icap_esc($icap_contacto['correo']) ?></a>
+              <a class="channel-value js-protected-email" href="#contacto-correo" data-antispam="mailto">julio.dejesus [en] icapmx.com</a>
               <div class="channel-actions">
-                <a class="button button-gmail button-sm" href="<?= icap_esc($icap_contacto['gmail_compose']) ?>" target="_blank" rel="noopener noreferrer">Abrir en Gmail ↗</a>
-                <a class="button button-outlook button-sm" href="<?= icap_esc($icap_contacto['outlook_compose']) ?>" target="_blank" rel="noopener noreferrer">Outlook Web ↗</a>
-                <button type="button" class="button button-outline-light button-sm" id="copy-email-btn" data-email="<?= icap_esc($icap_contacto['correo']) ?>">Copiar correo</button>
+                <a class="button button-gmail button-sm" href="#contacto-gmail" data-antispam="gmail" target="_blank" rel="noopener noreferrer">Abrir en Gmail ↗</a>
+                <a class="button button-outlook button-sm" href="#contacto-outlook" data-antispam="outlook" target="_blank" rel="noopener noreferrer">Outlook Web ↗</a>
+                <button type="button" class="button button-outline-light button-sm" id="copy-email-btn">Copiar correo</button>
                 <span class="copy-feedback" id="copy-feedback" role="status" aria-live="polite"></span>
               </div>
             </div>
 
-            <!-- Teléfono y WhatsApp -->
+            <!-- Teléfono y WhatsApp protegidos contra bots recolectores -->
             <div class="channel-card">
               <span class="channel-label">TELÉFONO Y WHATSAPP</span>
-              <a class="channel-value" href="tel:<?= icap_esc($icap_contacto['telefono_enlace']) ?>"><?= icap_esc($icap_contacto['telefono_visible']) ?></a>
+              <a class="channel-value" href="#contacto-tel" data-antispam="tel"><?= icap_esc($icap_contacto['telefono_visible']) ?></a>
               <div class="channel-actions">
-                <a class="button button-wa button-sm" href="<?= icap_esc($icap_contacto['whatsapp_enlace']) ?>" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
-                <a class="button button-outline-light button-sm" href="tel:<?= icap_esc($icap_contacto['telefono_enlace']) ?>">Llamar ↗</a>
+                <a class="button button-wa button-sm" href="#contacto-wa" data-antispam="wa" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
+                <a class="button button-outline-light button-sm" href="#contacto-tel" data-antispam="tel">Llamar ↗</a>
               </div>
             </div>
           </div>
@@ -158,6 +162,7 @@ require_once __DIR__ . '/includes/header.php';
             <div style="position:absolute;left:-9999px;" aria-hidden="true">
               <label for="f-honeypot">No llenar este campo</label>
               <input type="text" id="f-honeypot" name="sitio_web_empresa" tabindex="-1" autocomplete="off">
+              <input type="hidden" id="f-timestamp" name="form_ts" value="<?= time() ?>">
             </div>
 
             <div class="form-row">
@@ -205,6 +210,7 @@ require_once __DIR__ . '/includes/header.php';
                 <span>Enviar mensaje</span>
                 <span aria-hidden="true">↗</span>
               </button>
+              <p id="form-spam-feedback" class="copy-feedback" role="status" aria-live="polite" style="margin-top:8px;"></p>
             </div>
           </form>
         </div>

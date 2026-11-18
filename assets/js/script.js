@@ -233,21 +233,72 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+/* Protección Antispam / Anti-Scraping para Correo, WhatsApp y Teléfono */
+const _u = "julio.dejesus";
+const _d = "icapmx.com";
+const _p = "524462136128";
+const _mailAddr = `${_u}@${_d}`;
+const _defaultSubj = encodeURIComponent("Consulta - ICAP Ingeniería");
+const _defaultWaMsg = encodeURIComponent(
+  "Hola ICAP Ingeniería, me gustaría solicitar información.",
+);
+
+const antispamTargets = {
+  wa: `https://wa.me/${_p}?text=${_defaultWaMsg}`,
+  mailto: `mailto:${_mailAddr}?subject=${_defaultSubj}`,
+  gmail: `https://mail.google.com/mail/?view=cm&fs=1&to=${_mailAddr}&su=${_defaultSubj}`,
+  outlook: `https://outlook.office.com/mail/deeplink/compose?to=${_mailAddr}&subject=${_defaultSubj}`,
+  tel: `tel:+${_p}`,
+};
+
+document.querySelectorAll(".js-protected-email").forEach((el) => {
+  el.textContent = _mailAddr;
+});
+
+function unlockAntispamLink(link) {
+  const type = link.getAttribute("data-antispam");
+  if (type && antispamTargets[type]) {
+    link.setAttribute("href", antispamTargets[type]);
+  }
+}
+
+document.querySelectorAll("[data-antispam]").forEach((link) => {
+  ["pointerenter", "focus", "touchstart"].forEach((evt) => {
+    link.addEventListener(evt, () => unlockAntispamLink(link), {
+      once: true,
+      passive: true,
+    });
+  });
+  link.addEventListener("click", (e) => {
+    const type = link.getAttribute("data-antispam");
+    const targetUrl = type ? antispamTargets[type] : null;
+    if (!targetUrl) return;
+    if (link.getAttribute("href")?.startsWith("#")) {
+      e.preventDefault();
+      link.setAttribute("href", targetUrl);
+      if (link.target === "_blank") {
+        window.open(targetUrl, "_blank", "noopener,noreferrer");
+      } else {
+        window.location.href = targetUrl;
+      }
+    }
+  });
+});
+
 /* Botón para copiar correo electrónico */
 const copyEmailBtn = document.getElementById("copy-email-btn");
 const copyFeedback = document.getElementById("copy-feedback");
 
 if (copyEmailBtn && copyFeedback) {
   copyEmailBtn.addEventListener("click", async () => {
-    const email = copyEmailBtn.dataset.email || "julio.dejesus@icapmx.com";
     try {
-      await navigator.clipboard.writeText(email);
+      await navigator.clipboard.writeText(_mailAddr);
       copyFeedback.textContent = "✓ Correo copiado";
       setTimeout(() => {
         copyFeedback.textContent = "";
       }, 3200);
     } catch {
-      copyFeedback.textContent = email;
+      copyFeedback.textContent = _mailAddr;
     }
   });
 }
@@ -297,7 +348,7 @@ if (areaSelect) {
   }
 }
 
-/* Formulario de contacto y modal de canales directos */
+/* Formulario de contacto con blindaje Antispam (Honeypot, Time-trap, Rate-limit y Anti-links) */
 const projectForm = document.getElementById("project-form");
 const quoteDialog = document.getElementById("quote-send-dialog");
 const optWa = document.getElementById("dialog-opt-wa");
@@ -305,17 +356,53 @@ const optGmail = document.getElementById("dialog-opt-gmail");
 const optOutlook = document.getElementById("dialog-opt-outlook");
 const optMailto = document.getElementById("dialog-opt-mailto");
 const closeDialogBtn = document.getElementById("dialog-close-btn");
+const spamFeedback = document.getElementById("form-spam-feedback");
+
+const formLoadedAt = Date.now();
+let lastSubmitAt = 0;
 
 if (projectForm) {
   projectForm.addEventListener("submit", (event) => {
     event.preventDefault();
+    if (spamFeedback) spamFeedback.textContent = "";
+
     const formData = new FormData(projectForm);
+    const honeypot = (formData.get("sitio_web_empresa") || "").toString().trim();
     const nombre = (formData.get("nombre") || "").toString().trim();
     const empresa = (formData.get("empresa") || "").toString().trim();
     const correo = (formData.get("correo") || "").toString().trim();
     const telefono = (formData.get("telefono") || "").toString().trim();
     const area = (formData.get("area") || "").toString().trim();
     const mensaje = (formData.get("mensaje") || "").toString().trim();
+
+    const now = Date.now();
+    const elapsedMs = now - formLoadedAt;
+    const urlMatches = mensaje.match(/https?:\/\/|www\.|bit\.ly|t\.me/gi) || [];
+
+    // 1. Bloqueo por Honeypot (campo oculto llenado por bot) o llenado instantáneo (< 2.5s)
+    if (honeypot !== "" || elapsedMs < 2500) {
+      if (spamFeedback) {
+        spamFeedback.textContent = "Envío bloqueado por protección antispam.";
+      }
+      return;
+    }
+
+    // 2. Bloqueo por exceso de enlaces publicitarios o spam en el mensaje
+    if (urlMatches.length > 1) {
+      if (spamFeedback) {
+        spamFeedback.textContent = "Por seguridad antispam, no incluyas enlaces externos en el mensaje.";
+      }
+      return;
+    }
+
+    // 3. Límite de envíos seguidos (Rate-limit de 20 segundos entre envíos)
+    if (now - lastSubmitAt < 20000) {
+      if (spamFeedback) {
+        spamFeedback.textContent = "Por favor espera unos segundos antes de enviar otro mensaje.";
+      }
+      return;
+    }
+    lastSubmitAt = now;
 
     const subjectRaw = `Consulta [${area}] - ${empresa}`;
     const bodyLines = [
