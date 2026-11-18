@@ -1,32 +1,31 @@
 <?php
-/* Template Name: ICAP Nosotros */
 declare(strict_types=1);
-global $icap_contacto, $icap_sectores, $icap_servicios, $icap_proceso, $icap_plataformas, $icap_filosofia, $icap_galeria, $icap_faqs;
+global $icap_contacto, $icap_sectores, $icap_servicios, $icap_plataformas, $icap_filosofia, $icap_galeria;
 
 $pagina_actual      = 'nosotros';
-$titulo_pagina      = 'Nosotros | ICAP Ingeniería';
-$descripcion_pagina = 'Conoce la historia, misión, visión, política de calidad e instalaciones de ICAP Ingeniería en El Marqués y Pedro Escobedo, Querétaro.';
+$titulo_pagina      = 'Nosotros | ICAP IngenierÃ­a';
+$descripcion_pagina = 'Conoce la historia, misiÃ³n, visiÃ³n, polÃ­tica de calidad e instalaciones de ICAP IngenierÃ­a en QuerÃ©taro.';
 
 get_header();
 ?>
     <section class="page-hero" aria-labelledby="page-title">
       <div class="shell">
-        <p class="eyebrow">SOBRE ICAP INGENIERÍA</p>
-        <h1 id="page-title">Pensamos en la solución.<br><em>Hacemos que suceda.</em></h1>
-        <p class="page-hero-lead">Empresa 100% mexicana fundada en Querétaro en <?= icap_esc($icap_contacto['fundacion']) ?>, dedicada a la instrumentación, control y automatización de procesos industriales.</p>
+        <p class="eyebrow">SOBRE ICAP INGENIERÃA</p>
+        <h1 id="page-title">Pensamos en la soluciÃ³n.<br><em>Hacemos que suceda.</em></h1>
+        <p class="page-hero-lead">Empresa 100% mexicana fundada en la ciudad de QuerÃ©taro en <?= icap_esc($icap_contacto['fundacion']) ?>.</p>
       </div>
     </section>
 
     <section class="section" aria-labelledby="history-title">
       <div class="shell service-detail-grid">
         <div class="service-detail-copy">
-          <p class="eyebrow">NUESTRA HISTORIA</p>
-          <h2 id="history-title">Ingeniería práctica para los retos reales de planta.</h2>
-          <p>ICAP Ingeniería nació en la ciudad de Querétaro en el año <?= icap_esc($icap_contacto['fundacion']) ?> con el propósito de ofrecer soluciones prácticas, concretas y eficientes a la industria en general, utilizando componentes de alta calidad para la automatización y la optimización de líneas de producción.</p>
-          <p>Atendemos requerimientos de los sectores <strong>automotriz, aeronáutico, alimenticio, farmacéutico y de servicios</strong>, acompañando a cada cliente desde la ingeniería conceptual hasta la manufactura y puesta en marcha.</p>
+          <p class="eyebrow">QUIÃ‰NES SOMOS</p>
+          <h2 id="history-title">Soluciones prÃ¡cticas, concretas y eficientes para la industria.</h2>
+          <p>ICAP IngenierÃ­a naciÃ³ en la ciudad de QuerÃ©taro en el aÃ±o <?= icap_esc($icap_contacto['fundacion']) ?> con el propÃ³sito de ofrecer soluciones prÃ¡cticas, concretas y eficientes a la industria en general, utilizando componentes de alta calidad para la automatizaciÃ³n y la optimizaciÃ³n de lÃ­neas de producciÃ³n.</p>
+          <p>Nos especializamos en estaciones de trabajo manuales, semiautomÃ¡ticas y automÃ¡ticas para los sectores <strong>automotriz, aeronÃ¡utico, alimenticio, farmacÃ©utico y de servicios</strong>.</p>
         </div>
         <div class="service-detail-media">
-          <img src="<?= esc_url(get_template_directory_uri() . '/assets/IngenieriaAutomatizacion.webp') ?>" width="1600" height="1200" loading="lazy" alt="Equipo técnico de ICAP Ingeniería en el área de maquinados">
+          <img src="<?= esc_url(get_template_directory_uri()) ?>/assets/IngenieriaAutomatizacion.webp" width="1600" height="1200" loading="lazy" alt="Ãrea de maquinados de ICAP IngenierÃ­a">
         </div>
       </div>
     </section>
@@ -35,8 +34,8 @@ get_header();
       <div class="shell">
         <div class="section-heading about-heading">
           <div>
-            <p class="eyebrow">FILOSOFÍA CORPORATIVA</p>
-            <h2 id="philosophy-title">Nuestro compromiso<br><em>con la industria.</em></h2>
+            <p class="eyebrow">IDENTIDAD CORPORATIVA</p>
+            <h2 id="philosophy-title">MisiÃ³n, VisiÃ³n y<br><em>PolÃ­tica de Calidad.</em></h2>
           </div>
         </div>
         <div class="about-pillars">
@@ -55,10 +54,10 @@ get_header();
       <div class="shell">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">INFRAESTRUCTRUCTURA EN QUERÉTARO</p>
+            <p class="eyebrow">UBICACIONES</p>
             <h2 id="locations-title">Nuestras<br><span>instalaciones.</span></h2>
           </div>
-          <p>Dos ubicaciones estratégicas en el corredor industrial de Querétaro para separar el ensamble e integración del maquinado pesado.</p>
+          <p>Contamos con oficinas principales y Ã¡rea de ensamble en El MarquÃ©s, asÃ­ como taller de maquinados en Pedro Escobedo, QuerÃ©taro.</p>
         </div>
 
         <div class="facilities-grid">
@@ -72,7 +71,7 @@ get_header();
               <address><?= icap_esc($sede['direccion']) ?></address>
               <a class="location-map-link" href="<?= icap_esc($sede['maps_url']) ?>" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                <span>Ver ubicación en Google Maps ↗</span>
+                <span>Ver ubicaciÃ³n en Google Maps â†—</span>
               </a>
             </div>
           </article>
@@ -84,11 +83,11 @@ get_header();
     <section class="cta-banner" aria-labelledby="cta-title">
       <div class="shell cta-banner-inner">
         <div>
-          <p class="eyebrow">TRABAJEMOS JUNTOS</p>
-          <h2 id="cta-title">Conoce cómo podemos<br><em>apoyar a tu planta.</em></h2>
-          <p>Agenda una llamada o visita técnica con nuestro equipo de ingeniería.</p>
+          <p class="eyebrow">HABLEMOS DE TU PROYECTO</p>
+          <h2 id="cta-title">El siguiente paso<br><em>empieza aquÃ­.</em></h2>
+          <p>CuÃ©ntanos quÃ© necesita tu operaciÃ³n. Estamos en El MarquÃ©s, QuerÃ©taro.</p>
         </div>
-        <a class="button button-dark" href="<?= esc_url(home_url('/contacto/')) ?>">Contactar a ICAP <span aria-hidden="true">→</span></a>
+        <a class="button button-dark" href="<?= esc_url(home_url('/contacto/')) ?>">Ir a Contacto <span aria-hidden="true">â†’</span></a>
       </div>
     </section>
 <?php

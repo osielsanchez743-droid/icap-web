@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
-global $icap_contacto, $icap_sectores, $icap_servicios, $icap_proceso, $icap_plataformas, $icap_filosofia, $icap_galeria, $icap_faqs;
+global $icap_contacto, $icap_sectores, $icap_servicios, $icap_plataformas, $icap_filosofia, $icap_galeria;
 
 if (PHP_SAPI !== 'cli') {
     http_response_code(404);
 }
 
 $pagina_actual      = '404';
-$titulo_pagina      = 'Ruta no encontrada (404) | ICAP Ingeniería';
-$descripcion_pagina = 'La página solicitada no existe o cambió de ubicación. Explora las especialidades de automatización e ingeniería industrial de ICAP.';
+$titulo_pagina      = 'Ruta no encontrada (404) | ICAP IngenierÃ­a';
+$descripcion_pagina = 'La pÃ¡gina solicitada no existe o cambiÃ³ de ubicaciÃ³n. Explora las especialidades de automatizaciÃ³n e ingenierÃ­a industrial de ICAP.';
 
 get_header();
 ?>
@@ -17,19 +17,19 @@ get_header();
         <div class="error-404-panel">
           <span class="error-404-code">
             <span class="viewport-led" aria-hidden="true"></span>
-            ESTADO DEL SISTEMA // CÓDIGO 404
+            ESTADO DEL SISTEMA // CÃ“DIGO 404
           </span>
           <h1 id="error-title" style="max-width: 18ch; margin-bottom: 14px;">Ruta no encontrada<br><em>en el directorio.</em></h1>
-          <p class="hero-lead" style="max-width: 60ch;">El enlace al que intentaste acceder no existe o pertenece a la versión anterior del sitio. Selecciona una de las secciones activas de <strong>ICAP Ingeniería</strong> para continuar:</p>
+          <p class="hero-lead" style="max-width: 60ch;">El enlace al que intentaste acceder no existe o pertenece a la versiÃ³n anterior del sitio. Selecciona una de las secciones activas de <strong>ICAP IngenierÃ­a</strong> para continuar:</p>
 
           <div class="hero-actions" style="margin-bottom: 24px;">
             <a class="button button-orange" href="<?= esc_url(home_url('/')) ?>">
               <span>Volver al Inicio</span>
-              <span aria-hidden="true">→</span>
+              <span aria-hidden="true">â†’</span>
             </a>
             <a class="button button-wa" href="<?= icap_esc($icap_contacto['whatsapp_enlace']) ?>" target="_blank" rel="noopener noreferrer">
               <span>Contactar por WhatsApp</span>
-              <span aria-hidden="true">↗</span>
+              <span aria-hidden="true">â†—</span>
             </a>
           </div>
 
@@ -42,7 +42,7 @@ get_header();
                 <p class="channel-note"><?= icap_esc($srv['resumen']) ?></p>
               </div>
               <a class="location-map-link" href="<?= esc_url(home_url('/servicios/')) ?>#<?= icap_esc($srv['id']) ?>">
-                <span>Ir a <?= icap_esc($srv['titulo']) ?> →</span>
+                <span>Ir a <?= icap_esc($srv['titulo']) ?> â†’</span>
               </a>
             </article>
             <?php endforeach; ?>

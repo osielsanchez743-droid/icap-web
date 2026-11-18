@@ -16,7 +16,6 @@
   .about-pillars,
   .gallery-grid-full,
   .footer-main { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .process-timeline { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .about-pillars > :last-child { grid-column: 1 / -1; }
   .capabilities-panel, .contact-grid { grid-template-columns: 1fr; }
 }
@@ -66,9 +65,8 @@
   .main-nav > a:not(.nav-contact) { padding: 14px 4px; border-bottom: 1px solid var(--border-grid); }
   .main-nav .nav-contact { margin-top: 14px; padding: 14px 16px; justify-content: space-between; }
 
-  .section-heading, .cta-banner-inner { align-items: flex-start; flex-direction: column; gap: 16px; }
-  .service-detail-grid, .facilities-grid, .capabilities-groups, .about-top, .lightbox-content-split { grid-template-columns: 1fr; }
-  .process-timeline { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .section-heading, .cta-banner-inner { align-items: flex-start; flex-direction: column; gap: 14px; }
+  .service-detail-grid, .facilities-grid, .capabilities-groups, .about-top { grid-template-columns: 1fr; }
   .about-photo { border-right: 0; border-bottom: 1px solid var(--border-grid); }
   .service-detail-grid.is-reversed .service-detail-copy { order: 1; }
   .service-detail-grid.is-reversed .service-detail-media { order: 2; }
@@ -76,25 +74,54 @@
   .lightbox-nav { display: none; }
 }
 
-/* Celular (<= 640px) */
+/* Celular (<= 640px) — Diseño ligero y sin saturación */
 @media (max-width: 640px) {
-  :root { --header-h: 62px; --gutter: 16px; }
+  :root {
+    --header-h: 60px;
+    --gutter: 16px;
+    --space-section: 44px;
+  }
 
-  .brand span, .theme-toggle span, .hero-content::before, .hero-content::after, .intro-mark, .viewport-overlay-tag span:last-child { display: none; }
+  .brand span,
+  .theme-toggle span,
+  .hero-content::before,
+  .hero-content::after,
+  .intro-mark,
+  .gallery-count { display: none; }
+
   .theme-toggle { padding: 0 10px; width: 40px; height: 40px; justify-content: center; }
 
   .hero-grid-shell, .page-hero > .shell, .intro-band-inner, .about-top { border-inline: 0; }
-  .hero-content { padding: 28px 4px 32px; }
-  .hero-viewport { margin-inline: calc(-1 * var(--gutter)); padding: 20px var(--gutter); border-top: 1px solid var(--border-grid); }
+  .hero-content { padding: 24px 4px 24px; }
+  .hero-sector-chips { margin-top: 18px; padding-top: 14px; gap: 6px; }
+  .hero-viewport { margin-inline: calc(-1 * var(--gutter)); padding: 14px var(--gutter); border-top: 1px solid var(--border-grid); }
 
-  .intro-band-inner { min-height: 0; display: block; padding: 24px 0; }
-  .section-index { display: inline-block; margin: 0 0 10px; }
+  .page-hero > .shell { padding-block: 28px; padding-inline: 4px; }
+  .intro-band-inner { min-height: 0; display: block; padding: 20px 0; }
+  .section-index { display: inline-block; margin: 0 0 8px; }
+  .section-heading { margin-bottom: 22px; }
 
-  .viewport-specs, .service-grid, .process-timeline, .brand-matrix-grid, .cad-docs-options, .about-pillars, .gallery-grid-preview, .gallery-grid-full, .locations-grid, .form-row, .footer-main { grid-template-columns: 1fr; }
+  .service-grid,
+  .about-pillars,
+  .locations-grid,
+  .form-row,
+  .footer-main { grid-template-columns: 1fr; gap: 12px; }
+
   .service-card { min-height: 0; }
-  .viewport-spec-item { border-right: 0; border-bottom: 1px solid var(--border-grid); }
-  .viewport-spec-item:last-child { border-bottom: 0; }
-  .gallery-feature { grid-row: auto; }
+  .service-card-body { padding: 16px 18px; }
+  .service-card p { margin-bottom: 12px; }
+
+  .about-photo { padding: 14px; }
+  .about-copy { padding: 26px 14px; }
+  .about-detail { margin-top: 18px; }
+  .pillar-card, .facility-body, .channel-card, .contact-form-card { padding: 18px; }
+
+  .gallery-grid-preview,
+  .gallery-grid-full { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .gallery-item { padding: 6px 6px 0; }
+  .gallery-trigger { min-height: 110px; }
+  .gallery-item figcaption { padding: 8px 4px 10px; }
+  .gallery-item figcaption strong { font-size: 12px; }
 
   .subnav-pills { display: grid; grid-template-columns: 1fr 1fr; }
   .subnav-pills a { text-align: center; padding: 10px 8px; }
@@ -104,7 +131,7 @@
 /* Celulares pequeños (<= 390px) */
 @media (max-width: 390px) {
   h1 { font-size: 30px; }
-  .hero-actions, .subnav-pills { grid-template-columns: 1fr; align-items: stretch; flex-direction: column; gap: 12px; }
+  .hero-actions, .subnav-pills, .gallery-grid-preview, .gallery-grid-full { grid-template-columns: 1fr; align-items: stretch; flex-direction: column; gap: 10px; }
   .button { width: 100%; }
 }
 

@@ -4,7 +4,7 @@ require_once __DIR__ . '/includes/datos.php';
 
 $pagina_actual      = 'nosotros';
 $titulo_pagina      = 'Nosotros | ICAP Ingeniería';
-$descripcion_pagina = 'Conoce la historia, misión, visión, política de calidad e instalaciones de ICAP Ingeniería en El Marqués y Pedro Escobedo, Querétaro.';
+$descripcion_pagina = 'Conoce la historia, misión, visión, política de calidad e instalaciones de ICAP Ingeniería en Querétaro.';
 
 require_once __DIR__ . '/includes/header.php';
 ?>
@@ -12,20 +12,20 @@ require_once __DIR__ . '/includes/header.php';
       <div class="shell">
         <p class="eyebrow">SOBRE ICAP INGENIERÍA</p>
         <h1 id="page-title">Pensamos en la solución.<br><em>Hacemos que suceda.</em></h1>
-        <p class="page-hero-lead">Empresa 100% mexicana fundada en Querétaro en <?= icap_esc($icap_contacto['fundacion']) ?>, dedicada a la instrumentación, control y automatización de procesos industriales.</p>
+        <p class="page-hero-lead">Empresa 100% mexicana fundada en la ciudad de Querétaro en <?= icap_esc($icap_contacto['fundacion']) ?>.</p>
       </div>
     </section>
 
     <section class="section" aria-labelledby="history-title">
       <div class="shell service-detail-grid">
         <div class="service-detail-copy">
-          <p class="eyebrow">NUESTRA HISTORIA</p>
-          <h2 id="history-title">Ingeniería práctica para los retos reales de planta.</h2>
+          <p class="eyebrow">QUIÉNES SOMOS</p>
+          <h2 id="history-title">Soluciones prácticas, concretas y eficientes para la industria.</h2>
           <p>ICAP Ingeniería nació en la ciudad de Querétaro en el año <?= icap_esc($icap_contacto['fundacion']) ?> con el propósito de ofrecer soluciones prácticas, concretas y eficientes a la industria en general, utilizando componentes de alta calidad para la automatización y la optimización de líneas de producción.</p>
-          <p>Atendemos requerimientos de los sectores <strong>automotriz, aeronáutico, alimenticio, farmacéutico y de servicios</strong>, acompañando a cada cliente desde la ingeniería conceptual hasta la manufactura y puesta en marcha.</p>
+          <p>Nos especializamos en estaciones de trabajo manuales, semiautomáticas y automáticas para los sectores <strong>automotriz, aeronáutico, alimenticio, farmacéutico y de servicios</strong>.</p>
         </div>
         <div class="service-detail-media">
-          <img src="assets/img/IngenieriaAutomatizacion.webp" width="1600" height="1200" loading="lazy" alt="Equipo técnico de ICAP Ingeniería en el área de maquinados">
+          <img src="assets/img/IngenieriaAutomatizacion.webp" width="1600" height="1200" loading="lazy" alt="Área de maquinados de ICAP Ingeniería">
         </div>
       </div>
     </section>
@@ -34,8 +34,8 @@ require_once __DIR__ . '/includes/header.php';
       <div class="shell">
         <div class="section-heading about-heading">
           <div>
-            <p class="eyebrow">FILOSOFÍA CORPORATIVA</p>
-            <h2 id="philosophy-title">Nuestro compromiso<br><em>con la industria.</em></h2>
+            <p class="eyebrow">IDENTIDAD CORPORATIVA</p>
+            <h2 id="philosophy-title">Misión, Visión y<br><em>Política de Calidad.</em></h2>
           </div>
         </div>
         <div class="about-pillars">
@@ -54,10 +54,10 @@ require_once __DIR__ . '/includes/header.php';
       <div class="shell">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">INFRAESTRUCTRUCTURA EN QUERÉTARO</p>
+            <p class="eyebrow">UBICACIONES</p>
             <h2 id="locations-title">Nuestras<br><span>instalaciones.</span></h2>
           </div>
-          <p>Dos ubicaciones estratégicas en el corredor industrial de Querétaro para separar el ensamble e integración del maquinado pesado.</p>
+          <p>Contamos con oficinas principales y área de ensamble en El Marqués, así como taller de maquinados en Pedro Escobedo, Querétaro.</p>
         </div>
 
         <div class="facilities-grid">
@@ -83,11 +83,11 @@ require_once __DIR__ . '/includes/header.php';
     <section class="cta-banner" aria-labelledby="cta-title">
       <div class="shell cta-banner-inner">
         <div>
-          <p class="eyebrow">TRABAJEMOS JUNTOS</p>
-          <h2 id="cta-title">Conoce cómo podemos<br><em>apoyar a tu planta.</em></h2>
-          <p>Agenda una llamada o visita técnica con nuestro equipo de ingeniería.</p>
+          <p class="eyebrow">HABLEMOS DE TU PROYECTO</p>
+          <h2 id="cta-title">El siguiente paso<br><em>empieza aquí.</em></h2>
+          <p>Cuéntanos qué necesita tu operación. Estamos en El Marqués, Querétaro.</p>
         </div>
-        <a class="button button-dark" href="contacto.php">Contactar a ICAP <span aria-hidden="true">→</span></a>
+        <a class="button button-dark" href="contacto.php">Ir a Contacto <span aria-hidden="true">→</span></a>
       </div>
     </section>
 <?php

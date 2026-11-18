@@ -95,7 +95,7 @@
 .filter-btn.is-active { background: var(--icap-orange); border-color: var(--icap-orange); color: var(--text-on-orange); }
 
 .gallery-grid { display: grid; gap: 18px; }
-.gallery-grid-preview { grid-template-columns: 1.3fr 1fr; }
+.gallery-grid-preview { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .gallery-grid-full { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
 .gallery-item {
@@ -204,8 +204,9 @@
   border: 1px solid #262d35;
   padding: 14px;
 }
-.lightbox-figure { margin: 0; display: flex; align-items: center; justify-content: center; background: #0a0c0f; border: 1px solid #222830; overflow: hidden; }
-.lightbox-figure img { max-height: 62vh; width: 100%; object-fit: contain; }
+.lightbox-figure { margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #0a0c0f; border: 1px solid #222830; overflow: hidden; }
+.lightbox-figure img { max-height: 68vh; width: 100%; object-fit: contain; }
+.lightbox-simple-caption { width: 100%; padding: 12px 16px; background: #13171c; border-top: 1px solid #222830; color: #ffffff; font-size: 15px; text-align: center; }
 .lightbox-spec-panel {
   display: flex;
   flex-direction: column;

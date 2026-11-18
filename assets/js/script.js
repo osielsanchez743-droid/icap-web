@@ -94,41 +94,9 @@ if (menuButton && nav) {
 window.addEventListener("scroll", updateHeaderScroll, { passive: true });
 updateHeaderScroll();
 
-/* Visor CAD interactivo en Hero (CAM 01, CAM 02, CAM 03) */
-const heroViewportImg = document.getElementById("hero-viewport-img");
-const heroViewportCaption = document.getElementById("hero-viewport-caption");
-const heroViewportCode = document.getElementById("hero-viewport-code");
-const heroSpecButtons = document.querySelectorAll(
-  ".viewport-spec-item[data-hero-src]",
-);
-
-if (heroViewportImg && heroSpecButtons.length > 0) {
-  heroSpecButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const nextSrc = btn.dataset.heroSrc;
-      const nextCaption = btn.dataset.heroCaption;
-      const nextCode = btn.dataset.heroCode;
-      if (!nextSrc) return;
-
-      heroSpecButtons.forEach((b) =>
-        b.classList.toggle("is-active", b === btn),
-      );
-      heroViewportImg.style.opacity = "0.35";
-      setTimeout(() => {
-        heroViewportImg.src = nextSrc;
-        if (heroViewportCaption && nextCaption)
-          heroViewportCaption.textContent = nextCaption;
-        if (heroViewportCode && nextCode)
-          heroViewportCode.textContent = nextCode;
-        heroViewportImg.style.opacity = "1";
-      }, 140);
-    });
-  });
-}
-
 /* Animación sutil de aparición al hacer scroll */
 const revealElements = document.querySelectorAll(
-  ".service-card, .process-step, .brand-matrix-card, .pillar-card, .facility-card, .gallery-item, .service-detail-grid, .channel-card, .contact-form-card, .map-viewer-card",
+  ".service-card, .pillar-card, .facility-card, .gallery-item, .service-detail-grid, .channel-card, .contact-form-card, .map-viewer-card",
 );
 
 if ("IntersectionObserver" in window && revealElements.length > 0) {
@@ -150,121 +118,50 @@ if ("IntersectionObserver" in window && revealElements.length > 0) {
   });
 }
 
-/* Filtros de categoría en galeria */
-const filterButtons = document.querySelectorAll(".filter-btn");
-const filterableItems = document.querySelectorAll(
-  ".gallery-grid-full .gallery-item",
-);
-
-if (filterButtons.length > 0 && filterableItems.length > 0) {
-  filterButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const category = btn.dataset.filter || "all";
-      filterButtons.forEach((b) => b.classList.toggle("is-active", b === btn));
-      filterableItems.forEach((item) => {
-        const match = category === "all" || item.dataset.category === category;
-        item.hidden = !match;
-      });
-    });
-  });
-}
-
-/* Galería interactiva con <dialog> accesible y ficha técnica lateral */
+/* Galería interactiva con <dialog> accesible */
 const galleryItems = [
   {
     src: "assets/img/taller.webp",
-    alt: "Línea de estaciones automatizadas con estructuras de aluminio y paneles de control ICAP",
-    title: "Estaciones de trabajo automatizadas",
-    desc: "Estructuras en perfil de aluminio, control e iluminación integrada.",
+    alt: "Línea de estaciones automatizadas con estructuras de aluminio y paneles de control",
+    title: "Estaciones de trabajo",
     count: "01 / 06",
-    area: "mecanico",
-    tags: ["MECÁNICO", "ELÉCTRICO", "CONTROL"],
-    specs: [
-      "Estructura modular en perfil de aluminio anodizado con guardas de seguridad",
-      "Paneles de control superiores con torretas de estado y botoneras industriales",
-      "Iluminación LED integrada y rieles de alimentación para contenedores de línea",
-    ],
   },
   {
     src: "assets/img/IngenieriaManufactura.webp",
-    alt: "Detalle de estación industrial con manómetros, unidades de mantenimiento neumático y cableado estructurado",
-    title: "Integración neumática y eléctrica",
-    desc: "Unidades FRL, manómetros y canalización en estación de trabajo.",
+    alt: "Detalle de equipo industrial con componentes neumáticos",
+    title: "Integración industrial",
     count: "02 / 06",
-    area: "electrico",
-    tags: ["NEUMÁTICO", "ELÉCTRICO", "PRUEBAS"],
-    specs: [
-      "Unidades de mantenimiento neumático (FRL) con regulación independiente",
-      "Manómetros de carátula para monitoreo de presión por circuito de trabajo",
-      "Canalización neumática identificada y botonera de mando frontal",
-    ],
   },
   {
     src: "assets/img/galeria-5.webp",
-    alt: "Banda transportadora industrial con paro de emergencia y gabinete inferior fotografiada en planta",
-    title: "Equipo de proceso y transporte",
-    desc: "Transportador modular con seguridad y control integrado.",
+    alt: "Banda transportadora industrial fotografiada en taller",
+    title: "Equipo de proceso",
     count: "03 / 06",
-    area: "control",
-    tags: ["MECÁNICO", "CONTROL", "TRANSPORTE"],
-    specs: [
-      "Sistema de transporte modular con estructura de aluminio y niveladores",
-      "Paro de emergencia accesible y botonera de arranque/paro en estación",
-      "Gabinete inferior integrado para alojamiento de control y potencia",
-    ],
   },
   {
     src: "assets/img/galeria-6.webp",
-    alt: "Estación industrial con guarda de policarbonato, reguladores de presión y selectores neumáticos",
-    title: "Estación con prueba neumática",
-    desc: "Resguardo transparente, regulación por circuito y desfogue.",
+    alt: "Estación industrial con resguardo transparente y conexiones neumáticas",
+    title: "Detalle de estación",
     count: "04 / 06",
-    area: "electrico",
-    tags: ["NEUMÁTICO", "ESTANQUEIDAD", "SEGURIDAD"],
-    specs: [
-      "Guarda de policarbonato transparente para protección de operador en ciclo",
-      "Banco de reguladores de presión y manómetros para prueba neumática",
-      "Válvulas selectoras y circuito de desfogue controlado en panel frontal",
-    ],
   },
   {
     src: "assets/img/IngenieriaMecanica.webp",
-    alt: "Nave de ingeniería y área de ensamble de estaciones de trabajo de ICAP Ingeniería",
-    title: "Nave de ingeniería y ensamble",
-    desc: "Área de diseño e integración de estaciones en El Marqués, Querétaro.",
+    alt: "Nave de ingeniería y área de ensamble de ICAP Ingeniería",
+    title: "Área de ensamble",
     count: "05 / 06",
-    area: "mecanico",
-    tags: ["EL MARQUÉS", "ENSAMBLE", "INGENIERÍA"],
-    specs: [
-      "Sede principal en Condominio Industrial EUROPARK II, El Marqués, Qro.",
-      "Área de integración mecánica, armado eléctrico y pruebas FAT de estaciones",
-      "Oficinas de ingeniería para diseño CAD 3D, simulación FEA y programación",
-    ],
   },
   {
     src: "assets/img/IngenieriaAutomatizacion.webp",
-    alt: "Área de maquinados de ICAP con centro de maquinado CNC y fresadoras convencionales",
+    alt: "Área de maquinados de ICAP con equipo y personal en operación",
     title: "Taller de maquinados",
-    desc: "Equipamiento CNC y convencional en operación.",
     count: "06 / 06",
-    area: "manufactura",
-    tags: ["PEDRO ESCOBEDO", "MAQUINADO CNC", "MANUFACTURA"],
-    specs: [
-      "Planta de manufactura en Pedro Escobedo, Querétaro, con equipamiento propio",
-      "Centros de maquinado CNC, tornos y fresadoras convencionales de precisión",
-      "Fabricación de componentes metálicos, plásticos de ingeniería y herramentales",
-    ],
   },
 ];
 
 const lightbox = document.getElementById("gallery-lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
 const lightboxTitle = document.getElementById("lightbox-title");
-const lightboxDesc = document.getElementById("lightbox-desc");
 const lightboxCounter = document.getElementById("lightbox-counter");
-const lightboxTags = document.getElementById("lightbox-tags");
-const lightboxSpecs = document.getElementById("lightbox-specs");
-const lightboxQuoteLink = document.getElementById("lightbox-quote-link");
 const lightboxClose = document.getElementById("lightbox-close");
 const lightboxPrev = document.getElementById("lightbox-prev");
 const lightboxNext = document.getElementById("lightbox-next");
@@ -276,26 +173,16 @@ function renderLightboxItem(index) {
   currentGalleryIndex = (index + galleryItems.length) % galleryItems.length;
   const item = galleryItems[currentGalleryIndex];
   if (!lightboxImg) return;
-  const isSubfolderHtml = window.location.pathname.replace(/\\/g, "/").includes("/maqueta-html/");
-  lightboxImg.src = isSubfolderHtml && item.src.startsWith("assets/") ? `../${item.src}` : item.src;
+  const isSubfolderHtml = window.location.pathname
+    .replace(/\\/g, "/")
+    .includes("/maqueta-html/");
+  lightboxImg.src =
+    isSubfolderHtml && item.src.startsWith("assets/")
+      ? `../${item.src}`
+      : item.src;
   lightboxImg.alt = item.alt;
-  lightboxTitle.textContent = item.title;
-  lightboxDesc.textContent = item.desc;
-  lightboxCounter.textContent = item.count;
-
-  if (lightboxTags && Array.isArray(item.tags)) {
-    lightboxTags.innerHTML = item.tags
-      .map((t) => `<span class="gallery-tag">[${t}]</span>`)
-      .join("");
-  }
-  if (lightboxSpecs && Array.isArray(item.specs)) {
-    lightboxSpecs.innerHTML = item.specs.map((s) => `<li>${s}</li>`).join("");
-  }
-  if (lightboxQuoteLink) {
-    const isHtmlPage = window.location.pathname.endsWith(".html");
-    const contactBase = isHtmlPage ? "contacto.html" : "contacto.php";
-    lightboxQuoteLink.href = `${contactBase}?area=${encodeURIComponent(item.area || "mecanico")}`;
-  }
+  if (lightboxTitle) lightboxTitle.textContent = item.title;
+  if (lightboxCounter) lightboxCounter.textContent = item.count;
 }
 
 if (lightbox) {
@@ -355,7 +242,7 @@ if (copyEmailBtn && copyFeedback) {
     const email = copyEmailBtn.dataset.email || "julio.dejesus@icapmx.com";
     try {
       await navigator.clipboard.writeText(email);
-      copyFeedback.textContent = "✓ Correo copiado al portapapeles";
+      copyFeedback.textContent = "✓ Correo copiado";
       setTimeout(() => {
         copyFeedback.textContent = "";
       }, 3200);
@@ -365,7 +252,7 @@ if (copyEmailBtn && copyFeedback) {
   });
 }
 
-/* Selector de sede en el Visor Cartográfico de Contacto */
+/* Selector de sede en el Mapa de Contacto */
 const mapTabs = document.querySelectorAll(".map-tab-btn[data-embed]");
 const mapIframe = document.getElementById("icap-map-iframe");
 const mapCoords = document.getElementById("icap-map-coords");
@@ -400,28 +287,24 @@ if (areaSelect) {
   const params = new URLSearchParams(window.location.search);
   const areaParam = params.get("area");
   const map = {
-    mecanico: "Diseño Mecánico / Estaciones de trabajo",
-    manufactura: "Manufactura / Maquinado CNC",
-    electrico: "Sistemas Eléctricos y Neumáticos",
-    control: "Control, PLC y Robótica",
+    mecanico: "Diseño Mecánico",
+    manufactura: "Manufactura",
+    electrico: "Eléctrico / Neumático",
+    control: "Control",
   };
   if (areaParam && map[areaParam]) {
     areaSelect.value = map[areaParam];
   }
 }
 
-/* Formulario estructurado de solicitud técnica y modal de canales directos */
+/* Formulario de contacto y modal de canales directos */
 const projectForm = document.getElementById("project-form");
 const quoteDialog = document.getElementById("quote-send-dialog");
 const optWa = document.getElementById("dialog-opt-wa");
 const optGmail = document.getElementById("dialog-opt-gmail");
 const optOutlook = document.getElementById("dialog-opt-outlook");
 const optMailto = document.getElementById("dialog-opt-mailto");
-const optCopy = document.getElementById("dialog-opt-copy");
-const copyLabel = document.getElementById("dialog-copy-label");
 const closeDialogBtn = document.getElementById("dialog-close-btn");
-
-let currentQuoteText = "";
 
 if (projectForm) {
   projectForm.addEventListener("submit", (event) => {
@@ -432,90 +315,59 @@ if (projectForm) {
     const correo = (formData.get("correo") || "").toString().trim();
     const telefono = (formData.get("telefono") || "").toString().trim();
     const area = (formData.get("area") || "").toString().trim();
-    const planos = (
-      formData.get("planos") ||
-      "Cuento con planos / modelos 3D (.STEP, .DXF, .PDF)"
-    )
-      .toString()
-      .trim();
     const mensaje = (formData.get("mensaje") || "").toString().trim();
 
-    const subjectRaw = `Solicitud técnica [${area}] - ${empresa}`;
+    const subjectRaw = `Consulta [${area}] - ${empresa}`;
     const bodyLines = [
-      "Hola equipo de ICAP Ingeniería,",
+      "Hola ICAP Ingeniería,",
       "",
-      "Comparto los datos de nuestro requerimiento técnico:",
       `• Nombre: ${nombre}`,
-      `• Empresa / Planta: ${empresa}`,
+      `• Empresa: ${empresa}`,
       `• Correo: ${correo}`,
       `• Teléfono: ${telefono || "No especificado"}`,
-      `• Especialidad requerida: ${area}`,
-      `• Documentación / Planos: ${planos}`,
+      `• Área: ${area}`,
       "",
-      "Descripción del proyecto:",
+      "Mensaje:",
       mensaje,
     ];
-    currentQuoteText = bodyLines.join("\n");
+    const bodyText = bodyLines.join("\n");
 
     const subjectEnc = encodeURIComponent(subjectRaw);
-    const bodyEnc = encodeURIComponent(currentQuoteText);
+    const bodyEnc = encodeURIComponent(bodyText);
 
-    // 1. Enlace para WhatsApp
     if (optWa) {
       const waText = encodeURIComponent(
-        `*SOLICITUD TÉCNICA ICAP*\n` +
+        `*CONSULTA ICAP INGENIERÍA*\n` +
           `*Empresa:* ${empresa}\n` +
-          `*Contacto:* ${nombre}\n` +
+          `*Nombre:* ${nombre}\n` +
           `*Correo:* ${correo}\n` +
           `*Tel:* ${telefono || "N/A"}\n` +
-          `*Área:* ${area}\n` +
-          `*Planos / CAD:* ${planos}\n\n` +
-          `*Detalle del proyecto:*\n${mensaje}`,
+          `*Área:* ${area}\n\n` +
+          `*Mensaje:*\n${mensaje}`,
       );
       optWa.href = `https://wa.me/524462136128?text=${waText}`;
     }
 
-    // 2. Enlace directo para redactar en Gmail Web
     if (optGmail) {
       optGmail.href = `https://mail.google.com/mail/?view=cm&fs=1&to=julio.dejesus@icapmx.com&su=${subjectEnc}&body=${bodyEnc}`;
     }
 
-    // 3. Enlace directo para redactar en Outlook Web
     if (optOutlook) {
       optOutlook.href = `https://outlook.office.com/mail/deeplink/compose?to=julio.dejesus@icapmx.com&subject=${subjectEnc}&body=${bodyEnc}`;
     }
 
-    // 4. Enlace para cliente de correo del sistema (mailto)
     if (optMailto) {
       optMailto.href = `mailto:julio.dejesus@icapmx.com?subject=${subjectEnc}&body=${bodyEnc}`;
     }
 
-    // Mostrar el cuadro de diálogo
     if (quoteDialog && typeof quoteDialog.showModal === "function") {
       quoteDialog.showModal();
     } else if (optGmail) {
-      // Fallback si el navegador no soporta dialog
       window.open(optGmail.href, "_blank");
     }
   });
 }
 
-// Botón para copiar texto dentro del modal
-if (optCopy && copyLabel) {
-  optCopy.addEventListener("click", async () => {
-    try {
-      await navigator.clipboard.writeText(currentQuoteText);
-      copyLabel.textContent = "✓ Texto copiado al portapapeles";
-      setTimeout(() => {
-        copyLabel.textContent = "Copiar texto completo de la solicitud";
-      }, 3500);
-    } catch {
-      copyLabel.textContent = "Selecciona y copia manualmente";
-    }
-  });
-}
-
-// Cerrar el modal
 if (closeDialogBtn && quoteDialog) {
   closeDialogBtn.addEventListener("click", () => quoteDialog.close());
   quoteDialog.addEventListener("click", (event) => {
