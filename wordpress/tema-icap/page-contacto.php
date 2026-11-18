@@ -22,7 +22,7 @@ $mensaje_estado = '';
 $enlace_mailto_generado = '';
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
-    $honeypot = trim((string) ($_POST['sitio_web_empresa'] ?? ''));
+    $honeypot = trim((string) ($_POST['icap_hp_field'] ?? ''));
     $form_ts  = (int) ($_POST['form_ts'] ?? 0);
     $nombre   = trim((string) ($_POST['nombre'] ?? ''));
     $empresa  = trim((string) ($_POST['empresa'] ?? ''));
@@ -34,7 +34,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
     $elapsed_sec = $form_ts > 0 ? (time() - $form_ts) : 99;
     $url_count   = preg_match_all('/https?:\/\/|www\./i', $mensaje);
 
-    if ($honeypot !== '' || $elapsed_sec < 3 || $url_count > 1) {
+    if ($honeypot !== '' || $elapsed_sec < 1 || $url_count > 1) {
         $estado_envio = 'error';
         $mensaje_estado = 'Solicitud bloqueada por el filtro antispam.';
     } elseif ($nombre === '' || $empresa === '' || !filter_var($correo, FILTER_VALIDATE_EMAIL) || $mensaje === '') {
@@ -159,9 +159,9 @@ get_header();
           <?php endif; ?>
 
           <form id="project-form" class="project-form" method="post" action="<?= esc_url(home_url('/contacto/')) ?>">
-            <div style="position:absolute;left:-9999px;" aria-hidden="true">
-              <label for="f-honeypot">No llenar este campo</label>
-              <input type="text" id="f-honeypot" name="sitio_web_empresa" tabindex="-1" autocomplete="off">
+            <div style="position:absolute;left:-9999px;width:0;height:0;overflow:hidden;opacity:0;pointer-events:none;" aria-hidden="true">
+              <label for="f-honeypot">Dejar vacÃ­o</label>
+              <input type="text" id="f-honeypot" name="icap_hp_field" tabindex="-1" autocomplete="new-password" data-lpignore="true">
               <input type="hidden" id="f-timestamp" name="form_ts" value="<?= time() ?>">
             </div>
 

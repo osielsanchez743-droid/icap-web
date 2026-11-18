@@ -367,7 +367,7 @@ if (projectForm) {
     if (spamFeedback) spamFeedback.textContent = "";
 
     const formData = new FormData(projectForm);
-    const honeypot = (formData.get("sitio_web_empresa") || "").toString().trim();
+    const honeypot = (formData.get("icap_hp_field") || "").toString().trim();
     const nombre = (formData.get("nombre") || "").toString().trim();
     const empresa = (formData.get("empresa") || "").toString().trim();
     const correo = (formData.get("correo") || "").toString().trim();
@@ -379,8 +379,8 @@ if (projectForm) {
     const elapsedMs = now - formLoadedAt;
     const urlMatches = mensaje.match(/https?:\/\/|www\.|bit\.ly|t\.me/gi) || [];
 
-    // 1. Bloqueo por Honeypot (campo oculto llenado por bot) o llenado instantáneo (< 2.5s)
-    if (honeypot !== "" || elapsedMs < 2500) {
+    // 1. Bloqueo por Honeypot (campo oculto llenado por bot) o envío automático instantáneo (< 0.5s)
+    if (honeypot !== "" || elapsedMs < 500) {
       if (spamFeedback) {
         spamFeedback.textContent = "Envío bloqueado por protección antispam.";
       }
