@@ -237,3 +237,26 @@ $icap_galeria = [
         'destacada' => false
     ]
 ];
+
+$icap_faqs = [
+    [
+        'codigo'    => '01',
+        'pregunta'  => '¿Qué áreas de ingeniería y automatización abarca ICAP?',
+        'respuesta' => 'Integramos cuatro especialidades principales: Diseño Mecánico (estaciones de trabajo, elemento finito, modelado 3D y selección de materiales), Manufactura (maquinado CNC, torno y fresa convencional, soldadura MIG/Arco y rectificado), Sistemas Eléctricos / Neumáticos y Control (integración de hardware/software y programación de PLC y robots).'
+    ],
+    [
+        'codigo'    => '02',
+        'pregunta'  => '¿Qué marcas de PLC, robots y cobots programan e integran?',
+        'respuesta' => 'En programación de PLC trabajamos con Allen-Bradley, Siemens, Mitsubishi, Schneider, Omron y Keyence. En programación de cobots y robots industriales trabajamos con Stäubli, Fanuc, Doosan, Universal Robots, Yaskawa y ABB.'
+    ],
+    [
+        'codigo'    => '03',
+        'pregunta'  => '¿A qué sectores industriales atienden?',
+        'respuesta' => 'Desarrollamos soluciones a medida y estaciones de trabajo manuales, semiautomáticas y automáticas para los sectores automotriz, aeronáutico, alimenticio, farmacéutico y de servicios.'
+    ],
+    [
+        'codigo'    => '04',
+        'pregunta'  => '¿Dónde se encuentran ubicadas sus instalaciones?',
+        'respuesta' => 'Contamos con oficinas principales y área de ensamble en El Marqués (Condominio Industrial EUROPARK II, Bodega 5A), así como nuestro taller de maquinados en Pedro Escobedo, Querétaro.'
+    ]
+];

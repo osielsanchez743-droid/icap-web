@@ -94,6 +94,23 @@ $preload_hero       = $preload_hero ?? false;
           ]
       ]
   ];
+  if (in_array($pagina_actual, ['servicios', 'contacto'], true) && !empty($icap_faqs)) {
+      $faq_entities = [];
+      foreach ($icap_faqs as $faq_item) {
+          $faq_entities[] = [
+              '@type'          => 'Question',
+              'name'           => $faq_item['pregunta'],
+              'acceptedAnswer' => [
+                  '@type' => 'Answer',
+                  'text'  => $faq_item['respuesta']
+              ]
+          ];
+      }
+      $schema_graph[] = [
+          '@type'      => 'FAQPage',
+          'mainEntity' => $faq_entities
+      ];
+  }
   ?>
   <script type="application/ld+json"><?= json_encode(['@context' => 'https://schema.org', '@graph' => $schema_graph], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?></script>
 </head>

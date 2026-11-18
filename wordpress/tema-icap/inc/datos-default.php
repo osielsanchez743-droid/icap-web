@@ -238,9 +238,29 @@ $icap_galeria = [
     ]
 ];
 
-/**
- * Integración con opciones editables del panel WordPress ("Datos ICAP" y CPT "Galería en Planta")
- */
+$icap_faqs = [
+    [
+        'codigo'    => '01',
+        'pregunta'  => 'Â¿QuÃ© Ã¡reas de ingenierÃ­a y automatizaciÃ³n abarca ICAP?',
+        'respuesta' => 'Integramos cuatro especialidades principales: DiseÃ±o MecÃ¡nico (estaciones de trabajo, elemento finito, modelado 3D y selecciÃ³n de materiales), Manufactura (maquinado CNC, torno y fresa convencional, soldadura MIG/Arco y rectificado), Sistemas ElÃ©ctricos / NeumÃ¡ticos y Control (integraciÃ³n de hardware/software y programaciÃ³n de PLC y robots).'
+    ],
+    [
+        'codigo'    => '02',
+        'pregunta'  => 'Â¿QuÃ© marcas de PLC, robots y cobots programan e integran?',
+        'respuesta' => 'En programaciÃ³n de PLC trabajamos con Allen-Bradley, Siemens, Mitsubishi, Schneider, Omron y Keyence. En programaciÃ³n de cobots y robots industriales trabajamos con StÃ¤ubli, Fanuc, Doosan, Universal Robots, Yaskawa y ABB.'
+    ],
+    [
+        'codigo'    => '03',
+        'pregunta'  => 'Â¿A quÃ© sectores industriales atienden?',
+        'respuesta' => 'Desarrollamos soluciones a medida y estaciones de trabajo manuales, semiautomÃ¡ticas y automÃ¡ticas para los sectores automotriz, aeronÃ¡utico, alimenticio, farmacÃ©utico y de servicios.'
+    ],
+    [
+        'codigo'    => '04',
+        'pregunta'  => 'Â¿DÃ³nde se encuentran ubicadas sus instalaciones?',
+        'respuesta' => 'Contamos con oficinas principales y Ã¡rea de ensamble en El MarquÃ©s (Condominio Industrial EUROPARK II, Bodega 5A), asÃ­ como nuestro taller de maquinados en Pedro Escobedo, QuerÃ©taro.'
+    ]
+];
+
 if (function_exists('get_option')) {
     $icap_contacto['correo']           = get_option('icap_correo', $icap_contacto['correo']);
     $icap_contacto['telefono_visible'] = get_option('icap_telefono_visible', $icap_contacto['telefono_visible']);

@@ -70,6 +70,34 @@ require_once __DIR__ . '/includes/header.php';
     </section>
     <?php endforeach; ?>
 
+    <section class="section faq-section" id="faq" aria-labelledby="faq-title">
+      <div class="shell">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">DUDAS FRECUENTES</p>
+            <h2 id="faq-title">Preguntas<br><span>frecuentes.</span></h2>
+          </div>
+        </div>
+
+        <div class="faq-list">
+          <?php foreach ($icap_faqs as $faq): ?>
+          <details class="faq-item">
+            <summary class="faq-summary">
+              <span class="faq-summary-left">
+                <span class="faq-code"><?= icap_esc($faq['codigo']) ?></span>
+                <span class="faq-question"><?= icap_esc($faq['pregunta']) ?></span>
+              </span>
+              <span class="faq-indicator" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-answer">
+              <?= icap_esc($faq['respuesta']) ?>
+            </div>
+          </details>
+          <?php endforeach; ?>
+        </div>
+      </div>
+    </section>
+
     <section class="cta-banner" aria-labelledby="cta-title">
       <div class="shell cta-banner-inner">
         <div>

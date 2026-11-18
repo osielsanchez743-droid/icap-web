@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-global $icap_contacto, $icap_sectores, $icap_servicios, $icap_plataformas, $icap_filosofia, $icap_galeria;
+global $icap_contacto, $icap_sectores, $icap_servicios, $icap_plataformas, $icap_filosofia, $icap_galeria, $icap_faqs;
 
 $pagina_actual      = 'contacto';
 $titulo_pagina      = 'Contacto | ICAP IngenierÃ­a';
@@ -207,6 +207,34 @@ get_header();
               </button>
             </div>
           </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq-section" id="faq" aria-labelledby="faq-title">
+      <div class="shell">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">DUDAS FRECUENTES</p>
+            <h2 id="faq-title">Preguntas<br><span>frecuentes.</span></h2>
+          </div>
+        </div>
+
+        <div class="faq-list">
+          <?php foreach ($icap_faqs as $faq): ?>
+          <details class="faq-item">
+            <summary class="faq-summary">
+              <span class="faq-summary-left">
+                <span class="faq-code"><?= icap_esc($faq['codigo']) ?></span>
+                <span class="faq-question"><?= icap_esc($faq['pregunta']) ?></span>
+              </span>
+              <span class="faq-indicator" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-answer">
+              <?= icap_esc($faq['respuesta']) ?>
+            </div>
+          </details>
+          <?php endforeach; ?>
         </div>
       </div>
     </section>
