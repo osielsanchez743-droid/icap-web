@@ -255,6 +255,31 @@ document.querySelectorAll(".js-protected-email").forEach((el) => {
   el.textContent = _mailAddr;
 });
 
+function buildGmailWebUrl(subjectEnc, bodyEnc = "") {
+  return `https://mail.google.com/mail/?view=cm&fs=1&to=${_mailAddr}&su=${subjectEnc}${bodyEnc ? `&body=${bodyEnc}` : ""}`;
+}
+
+function openGmailCompose(subjectEnc, bodyEnc = "") {
+  const webUrl = buildGmailWebUrl(subjectEnc, bodyEnc);
+  const ua = navigator.userAgent || "";
+  const isAndroid = /Android/i.test(ua);
+  const isIOS = /iPhone|iPad|iPod/i.test(ua);
+  const mailtoUrl = `mailto:${_mailAddr}?subject=${subjectEnc}${bodyEnc ? `&body=${bodyEnc}` : ""}`;
+
+  if (isAndroid) {
+    window.location.href = `intent:${mailtoUrl}#Intent;package=com.google.android.gm;S.browser_fallback_url=${encodeURIComponent(webUrl)};end`;
+  } else if (isIOS) {
+    window.location.href = `googlegmail:///co?to=${_mailAddr}&subject=${subjectEnc}${bodyEnc ? `&body=${bodyEnc}` : ""}`;
+    setTimeout(() => {
+      if (!document.hidden) {
+        window.location.href = mailtoUrl;
+      }
+    }, 900);
+  } else {
+    window.open(webUrl, "_blank", "noopener,noreferrer");
+  }
+}
+
 function unlockAntispamLink(link) {
   const type = link.getAttribute("data-antispam");
   if (type && antispamTargets[type]) {
@@ -271,6 +296,11 @@ document.querySelectorAll("[data-antispam]").forEach((link) => {
   });
   link.addEventListener("click", (e) => {
     const type = link.getAttribute("data-antispam");
+    if (type === "gmail") {
+      e.preventDefault();
+      openGmailCompose(_defaultSubj);
+      return;
+    }
     const targetUrl = type ? antispamTargets[type] : null;
     if (!targetUrl) return;
     if (link.getAttribute("href")?.startsWith("#")) {
@@ -360,6 +390,15 @@ const spamFeedback = document.getElementById("form-spam-feedback");
 
 const formLoadedAt = Date.now();
 let lastSubmitAt = 0;
+let currentSubjectEnc = _defaultSubj;
+let currentBodyEnc = "";
+
+if (optGmail) {
+  optGmail.addEventListener("click", (e) => {
+    e.preventDefault();
+    openGmailCompose(currentSubjectEnc, currentBodyEnc);
+  });
+}
 
 if (projectForm) {
   projectForm.addEventListener("submit", (event) => {
@@ -421,6 +460,8 @@ if (projectForm) {
 
     const subjectEnc = encodeURIComponent(subjectRaw);
     const bodyEnc = encodeURIComponent(bodyText);
+    currentSubjectEnc = subjectEnc;
+    currentBodyEnc = bodyEnc;
 
     if (optWa) {
       const waText = encodeURIComponent(
